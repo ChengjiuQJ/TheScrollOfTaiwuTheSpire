@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>examplemod</groupId>
-    <artifactId>examplemod</artifactId>
+    <groupId>qjcj</groupId>
+    <artifactId>TheScrollOfTaiwuTheSpire</artifactId>
     <version>v1.0.0</version>
     <packaging>jar</packaging>
 
@@ -34,7 +34,7 @@
     </dependencies>
 
     <build>
-        <finalName>ExampleMod</finalName>
+        <finalName>TheScrollOfTaiwuTheSpire</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -54,7 +54,7 @@
                         <phase>package</phase>
                         <configuration>
                             <target>
-                                <copy file="target/ExampleMod.jar" tofile="../lib/ExampleMod.jar"/>
+                                <copy file="target/TheScrollOfTaiwuTheSpire.jar" tofile="D:/SteamLibrary/steamapps/common/SlayTheSpire/mods/TheScrollOfTaiwuTheSpire.jar"/>
                             </target>
                         </configuration>
                         <goals>
