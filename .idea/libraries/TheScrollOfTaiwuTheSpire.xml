@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="TheScrollOfTaiwuTheSpire">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/target/TheScrollOfTaiwuTheSpire.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

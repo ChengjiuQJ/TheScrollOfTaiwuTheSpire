@@ -6,7 +6,7 @@
     <version>v1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>ExampleMod</name>
+    <name>TheScrollOfTaiwuTheSpire</name>
     <description>Attempting to make a mod!</description>
 
     <dependencies>

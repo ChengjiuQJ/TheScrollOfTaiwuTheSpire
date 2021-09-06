@@ -1,6 +1,8 @@
 package cards;
 
 import basemod.abstracts.CustomCard;
+import characters.Taiwu;
+import characters.TaiwuEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -20,12 +22,14 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
  */
 public class DaZhuoShou extends CustomCard
 {
-    public static final String ID = "DaZhuoShou";
+    public static final String ID = "大拙手";
     //private static CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     // Get object containing the strings that are displayed in the game.
     public static final String NAME = "大拙手";//cardStrings.NAME;
-    public static final String DESCRIPTION = "“大直若屈，大巧若拙”。大拙手无招无式，一经施展则周身无处不是至强掌力，四面八方无处不为掌力所摧，其力之厚堪称天下外门神功第一。";//cardStrings.DESCRIPTION;
+    public static final String DESCRIPTION = "大直若屈，大巧若拙。大拙手无招无式，一经施展则周身无处不是至强掌力，四面八方无处不为掌力所摧，其力之厚堪称天下外门神功第一。";//cardStrings.DESCRIPTION;
     public static final String IMG_PATH = "img/card/大拙手.png";
+    public static AbstractCard.CardType cardType = CardType.ATTACK;
+    public static AbstractCard.CardColor cardColor = cards.CardColor.TAIWU_COLOR;
     private static final int COST = 0;
     private static final int ATTACK_DMG = 3;
     private static final int UPGRADE_PLUS_DMG = 3;
@@ -35,7 +39,7 @@ public class DaZhuoShou extends CustomCard
     public DaZhuoShou()
     {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION,
-                AbstractCard.CardType.ATTACK, AbstractCard.CardColor.RED,
+                cardType, cardColor,
                 AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ENEMY);
         this.magicNumber = this.baseMagicNumber = VULNERABLE_AMT;
         this.damage=this.baseDamage = ATTACK_DMG;
