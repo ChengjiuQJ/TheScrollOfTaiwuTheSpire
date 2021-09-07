@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.*;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -32,51 +33,30 @@ import java.util.ArrayList;
 public class Taiwu extends CustomPlayer
 {
     public static final int ENERGY_PER_TURN = 3; // how much energy you get every turn
-    public static final String TAIWU_SHOULDER_2 = "img/char/衣以候.jpg"; // campfire pose
-    public static final String MY_CHARACTER_SHOULDER_1 = "img/char/衣以候.jpg"; // another campfire pose
+    public static final String TAIWU_SHOULDER_2 = "img/char/衣以候.png"; // campfire pose
+    public static final String TAIWU_SHOULDER_1 = "img/char/衣以候.png"; // another campfire pose
     public static final String MY_CHARACTER_CORPSE = "img/char/死亡2.png"; // dead corpse
-    public static final String MY_CHARACTER_SKELETON_ATLAS = "img/char/skeleton.atlas"; // spine animation atlas
-    public static final String MY_CHARACTER_SKELETON_JSON = "img/char/skeleton.json"; // spine animation json
+    public static final String MY_CHARACTER_SKELETON_ATLAS = "img/char/spine2/skeleton.atlas"; // spine animation atlas
+    public static final String MY_CHARACTER_SKELETON_JSON = "img/char/spine2/skeleton.json"; // spine animation json
     public static final String[] orbTextures = new String[]{"img/char/orb/layer.png"}; //
 
     public Taiwu (String name) {
-        super(name, TheScrollOfTaiwuTheSpire.TAIWU_CLASS,null,null,new SpineAnimation(MY_CHARACTER_SKELETON_ATLAS,MY_CHARACTER_SKELETON_JSON,1f));
+        super(name, TheScrollOfTaiwuTheSpire.TAIWU_CLASS,null,null,new SpineAnimation(MY_CHARACTER_SKELETON_ATLAS,MY_CHARACTER_SKELETON_JSON,0.3f));
 
         this.dialogX = (this.drawX + 0.0F * Settings.scale); // set location for text bubbles
         this.dialogY = (this.drawY + 220.0F * Settings.scale); // you can just copy these values
 
         initializeClass(null, TAIWU_SHOULDER_2, // required call to load textures and setup energy/loadout
-                MY_CHARACTER_SHOULDER_1,
+                TAIWU_SHOULDER_1,
                 MY_CHARACTER_CORPSE,
                 getLoadout(), 20.0F, -10.0F, 220.0F, 290.0F, new EnergyManager(ENERGY_PER_TURN));
 
-        loadAnimation(MY_CHARACTER_SKELETON_ATLAS, MY_CHARACTER_SKELETON_JSON, 1.0F); // if you're using modified versions of base game animations or made animations in spine make sure to include this bit and the following lines
-
+        loadAnimation(MY_CHARACTER_SKELETON_ATLAS, MY_CHARACTER_SKELETON_JSON, 4F); // if you're using modified versions of base game animations or made animations in spine make sure to include this bit and the following lines
+        skeleton.setSkin("doll");
         AnimationState.TrackEntry e = this.state.setAnimation(0, "C_000", true);
-        //e.setTime(e.getEndTime() * MathUtils.random());
+        e.setTime(e.getEndTime() * MathUtils.random());
     }
 
-    public void loadAnimation(String atlasUrl,String jsonUrl,float scale)
-    {
-        this.atlas = new TextureAtlas(Gdx.files.internal(atlasUrl));
-        SkeletonJson json = new SkeletonJson(this.atlas);
-        if (CardCrawlGame.dungeon != null && AbstractDungeon.player != null) {
-            if (AbstractDungeon.player.hasRelic("PreservedInsect") && !this.isPlayer && AbstractDungeon.getCurrRoom().eliteTrigger) {
-                scale += 0.3F;
-            }
-
-            if (ModHelper.isModEnabled("MonsterHunter") && !this.isPlayer) {
-                scale -= 0.3F;
-            }
-        }
-
-        json.setScale(Settings.renderScale / scale);
-        SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal(jsonUrl));
-        this.skeleton = new Skeleton(skeletonData);
-        this.skeleton.setColor(Color.WHITE);
-        this.stateData = new AnimationStateData(skeletonData);
-        this.state = new AnimationState(this.stateData);
-    }
 
     public ArrayList<String> getStartingDeck() { // starting deck 'nuff said
         ArrayList<String> retVal = new ArrayList<>();
@@ -188,7 +168,7 @@ public class Taiwu extends CustomPlayer
     @Override
     public void doCharSelectScreenSelectEffect()
     {
-
+        // TODO: 2021/9/7 来点太吾语音
     }
 
     /**

@@ -1,19 +1,14 @@
 package cards;
 
 import basemod.abstracts.CustomCard;
-import characters.Taiwu;
-import characters.TaiwuEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 /**
  * @author 57680
@@ -26,11 +21,11 @@ public class DaZhuoShou extends CustomCard
     //private static CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     // Get object containing the strings that are displayed in the game.
     public static final String NAME = "大拙手";//cardStrings.NAME;
-    public static final String DESCRIPTION = "大直若屈，大巧若拙。大拙手无招无式，一经施展则周身无处不是至强掌力，四面八方无处不为掌力所摧，其力之厚堪称天下外门神功第一。";//cardStrings.DESCRIPTION;
-    public static final String IMG_PATH = "img/card/大拙手.png";
+    public static final String DESCRIPTION = "造成 #b 3 点伤害,附加 #b 1 层易伤";//cardStrings.DESCRIPTION;
+    public static final String IMG_PATH = "img/cards/大拙手.png";
     public static AbstractCard.CardType cardType = CardType.ATTACK;
     public static AbstractCard.CardColor cardColor = cards.CardColor.TAIWU_COLOR;
-    private static final int COST = 0;
+    private static final int COST = 1;
     private static final int ATTACK_DMG = 3;
     private static final int UPGRADE_PLUS_DMG = 3;
     private static final int VULNERABLE_AMT = 1;

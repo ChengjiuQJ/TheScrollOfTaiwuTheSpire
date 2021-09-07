@@ -12,6 +12,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -38,8 +39,9 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
     public TheScrollOfTaiwuTheSpire()
     {
         BaseMod.subscribe(this);
-        BaseMod.addColor(CardColor.TAIWU_COLOR, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE, "atsImg/512/beta.png", "atsImg/512/beta.png", "atsImg/512/beta.png", "atsImg/orbs/cost.png", "atsImg/1024/beta.png", "atsImg/1024/beta.png", "atsImg/1024/beta.png", "atsImg/orbs/cost.png", "atsImg/orbs/cost_tip.png");
+        CardColor.initalize();
     }
+
 
     /**
      * 被mod框架直接调用的初始化方法
