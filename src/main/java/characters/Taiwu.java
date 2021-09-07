@@ -38,10 +38,10 @@ public class Taiwu extends CustomPlayer
     public static final String MY_CHARACTER_CORPSE = "img/char/死亡2.png"; // dead corpse
     public static final String MY_CHARACTER_SKELETON_ATLAS = "img/char/spine2/skeleton.atlas"; // spine animation atlas
     public static final String MY_CHARACTER_SKELETON_JSON = "img/char/spine2/skeleton.json"; // spine animation json
-    public static final String[] orbTextures = new String[]{"img/char/orb/layer.png"}; //
+    public static final String[] orbTextures = new String[]{"img/orbs/orb.png"}; //
 
     public Taiwu (String name) {
-        super(name, TheScrollOfTaiwuTheSpire.TAIWU_CLASS,null,null,new SpineAnimation(MY_CHARACTER_SKELETON_ATLAS,MY_CHARACTER_SKELETON_JSON,0.3f));
+        super(name, TheScrollOfTaiwuTheSpire.TAIWU_CLASS,orbTextures,null,new SpineAnimation(MY_CHARACTER_SKELETON_ATLAS,MY_CHARACTER_SKELETON_JSON,0.3f));
 
         this.dialogX = (this.drawX + 0.0F * Settings.scale); // set location for text bubbles
         this.dialogY = (this.drawY + 220.0F * Settings.scale); // you can just copy these values

@@ -17,14 +17,26 @@ public class CardColor
     public static AbstractCard.CardColor TAIWU_COLOR;//自定义卡牌枚举
 
     public static final Color EVERYTHING_COLOR = Color.WHITE;
+
+    /**
+     * 手牌中卡牌显示的图片 512*512px
+     */
     public static final String ATTACK_BG_PATH = "img/cards/none_512.png";
     public static final String SKILL_BG_PATH = "img/cards/none_512.png";
     public static final String POWER_BG_PATH = "img/cards/none_512.png";
-    public static final String ORB_PATH = "img/orbs/orb.png";
+    public static final String ORB_PATH = "img/orbs/orb_cost.png";
+
+    /**
+     * 大图查看时显示的图片 1024*1024px
+     */
     public static final String ATTACK_BG_ISP_PATH = "img/cards/none.png";
     public static final String SKILL_BG_ISP_PATH = "img/cards/none.png";
     public static final String POWER_BG_ISP_PATH = "img/cards/none.png";
     public static final String ORB_ISP_PATH = "img/orbs/orb.png";
+
+    /**
+     * 暂时未知
+     */
     public static final String ORB_CARD_PATH = "img/orbs/orb.png";
 
 
