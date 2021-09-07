@@ -1,12 +1,8 @@
 package controller;
 
 import basemod.BaseMod;
-import basemod.interfaces.EditCardsSubscriber;
-import basemod.interfaces.EditCharactersSubscriber;
-import basemod.interfaces.EditRelicsSubscriber;
-import basemod.interfaces.EditStringsSubscriber;
-import cards.CardColor;
-import cards.DaZhuoShou;
+import basemod.interfaces.*;
+import cards.*;
 import characters.Taiwu;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -26,7 +22,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.logging.Logger;
 
 @SpireInitializer
-public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharactersSubscriber, EditRelicsSubscriber,EditStringsSubscriber
+public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharactersSubscriber, EditRelicsSubscriber,EditStringsSubscriber, EditKeywordsSubscriber
 {
 
     private static TheScrollOfTaiwuTheSpire instance;
@@ -39,6 +35,7 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
     public TheScrollOfTaiwuTheSpire()
     {
         BaseMod.subscribe(this);
+        BattleController battleController = new BattleController();
         CardColor.initalize();
     }
 
@@ -54,8 +51,11 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
     @Override
     public void receiveEditCards()
     {
+        logger.info("start adding cards");
         BaseMod.addCard(new DaZhuoShou());
-        UnlockTracker.seenPref.putInteger("大拙手",1);//设置为可见
+        BaseMod.addCard(new TaiZuChangQuan());
+        BaseMod.addCard(new BiHuYouQiangGong());
+        logger.info("adding cards done");
     }
 
     @Override
@@ -70,14 +70,28 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
     @Override
     public void receiveEditRelics()
     {
-        logger.info("start adding relic");
+        logger.info("start adding relics");
         BaseMod.addRelicToCustomPool(new FuYuJianBing(),CardColor.TAIWU_COLOR);
-        logger.info("adding relic done");
+        logger.info("adding relics done");
     }
 
     @Override
     public void receiveEditStrings()
     {
         BaseMod.loadCustomStringsFile(RelicStrings.class,"taiwuLocalization/zhs/taiwuRelics.json");
+        BaseMod.loadCustomStringsFile(CardStrings.class,"taiwuLocalization/zhs/taiwuCards.json");
+    }
+
+    @Override
+    public void receiveEditKeywords()
+    {
+        String[] keywords =new String[]{
+                "崩",
+                "劈",
+                "射",
+                "扫",
+                "音"
+        };
+        BaseMod.addKeyword(keywords,"式的一种。式是用来施展武学的资源，消耗式施展的武学比一般使用更加强劲。");
     }
 }

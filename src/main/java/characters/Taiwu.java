@@ -38,10 +38,11 @@ public class Taiwu extends CustomPlayer
     public static final String MY_CHARACTER_CORPSE = "img/char/死亡2.png"; // dead corpse
     public static final String MY_CHARACTER_SKELETON_ATLAS = "img/char/spine2/skeleton.atlas"; // spine animation atlas
     public static final String MY_CHARACTER_SKELETON_JSON = "img/char/spine2/skeleton.json"; // spine animation json
-    public static final String[] orbTextures = new String[]{"img/orbs/orb.png"}; //
+    public static final String[] ORB_TEXTURES = new String[]{"img/orbs/orb.png"}; //
+    public static final String ORB_VFX = "img/orbs/orb_vfx.png"; //
 
     public Taiwu (String name) {
-        super(name, TheScrollOfTaiwuTheSpire.TAIWU_CLASS,orbTextures,null,new SpineAnimation(MY_CHARACTER_SKELETON_ATLAS,MY_CHARACTER_SKELETON_JSON,0.3f));
+        super(name, TheScrollOfTaiwuTheSpire.TAIWU_CLASS,ORB_TEXTURES,ORB_VFX,new SpineAnimation(MY_CHARACTER_SKELETON_ATLAS,MY_CHARACTER_SKELETON_JSON,0.3f));
 
         this.dialogX = (this.drawX + 0.0F * Settings.scale); // set location for text bubbles
         this.dialogY = (this.drawY + 220.0F * Settings.scale); // you can just copy these values
@@ -60,10 +61,11 @@ public class Taiwu extends CustomPlayer
 
     public ArrayList<String> getStartingDeck() { // starting deck 'nuff said
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add("大拙手");
-        retVal.add("大拙手");
-        retVal.add("大拙手");
-        retVal.add("大拙手");
+        retVal.add("太祖长拳");
+        retVal.add("太祖长拳");
+        retVal.add("太祖长拳");
+        retVal.add("太祖长拳");
+        retVal.add("太祖长拳");
         retVal.add("大拙手");
         return retVal;
     }
@@ -71,19 +73,19 @@ public class Taiwu extends CustomPlayer
     public ArrayList<String> getStartingRelics() { // starting relics - also simple
         ArrayList<String> retVal = new ArrayList<>();
         retVal.add("FuYuJianBing");
-        UnlockTracker.markRelicAsSeen("MyRelic");
+        UnlockTracker.markRelicAsSeen("FuYuJianBing");
         return retVal;
     }
 
     public static final int STARTING_HP = 79;
     public static final int MAX_HP = 79;
     private static final int ORB_SLOTS = 0;
-    public static final int STARTING_GOLD = 79;
+    public static final int STARTING_GOLD = 99;
     public static final int HAND_SIZE = 5;
 
     /**
      * 选人界面时画面上的各种信息
-     * @return
+     * @return 选人界面展示的信息
      */
     public CharSelectInfo getLoadout() { // the rest of the character loadout so includes your character select screen info plus hp and starting gold
         return new CharSelectInfo("太吾传人", "「相枢」者，万相之相，祸之核枢也…… NL 此物非神非鬼，杀不死，灭不去，思之则生，念绝则亡。",

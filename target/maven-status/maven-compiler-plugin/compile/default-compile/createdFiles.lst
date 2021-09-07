@@ -1,7 +1,14 @@
+cards\AttackType.class
+cards\CardModel.class
+UI\TaiwuPanel.class
+controller\BattleController.class
 Utils\TextureLoader.class
+cards\TaiZuChangQuan.class
 relics\FuYuJianBing.class
 characters\TaiwuEnum.class
 cards\CardColor.class
 controller\TheScrollOfTaiwuTheSpire.class
 characters\Taiwu.class
 cards\DaZhuoShou.class
+cards\BiHuYouQiangGong.class
+actions\GainSHIAction.class
