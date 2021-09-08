@@ -4,6 +4,7 @@ import cards.AttackType;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import controller.BattleController;
 
 /**
@@ -27,12 +28,9 @@ public class GainSHIAction extends AbstractGameAction
     @Override
     public void update()
     {
-        if(isCalled&&!isDone)
-            isDone = true;
-        else
-        {
-            BattleController.instance.gainShi(types,amount);
-            isDone = true;
-        }
+        for(int i=0;i<types.length;i++)
+            for (int j=0;j<amount[i];j++)
+                AbstractDungeon.actionManager.addToBottom(new AddShiAnimation(types[i]));
+        isDone = true;
     }
 }

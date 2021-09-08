@@ -1,5 +1,6 @@
 package cards;
 
+import actions.CostShiAction;
 import actions.GainSHIAction;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -37,6 +38,8 @@ public class DaZhuoShou extends CustomCard
     private static CardTarget CARD_TARGET = CardTarget.ENEMY;
     private static final AttackType[] GET_SHI_TYPE = new AttackType[]{AttackType.BENG};//获得式的种类
     private static final int[] GET_SHI_COUNT=new int[]{1};//获得的式的数量
+    private static final AttackType[] COST_SHI_TYPE = new AttackType[]{AttackType.BENG};//获得式的种类
+    private static final int[] COST_SHI_COUNT=new int[]{2};//获得的式的数量
     private static final int MAGIC_NUMBER = 1;
     private static final int UPGRADE_PLUS_MAGIC_NUMBER = 1;
 
@@ -52,10 +55,10 @@ public class DaZhuoShou extends CustomCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        AbstractDungeon.actionManager.addToBottom(new CostShiAction(COST_SHI_TYPE,COST_SHI_COUNT));
         AbstractDungeon.actionManager.addToBottom(new DamageAction(m,
                 new DamageInfo(p, this.damage, this.damageTypeForTurn),
                 AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-        AbstractDungeon.actionManager.addToBottom(new GainSHIAction(p,GET_SHI_TYPE,GET_SHI_COUNT));
     }
 
     @Override

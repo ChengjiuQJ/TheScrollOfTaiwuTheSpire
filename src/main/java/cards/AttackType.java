@@ -4,7 +4,7 @@ public enum AttackType
 {
     PI,
     BENG,
-    SHE,
+    ZHI,
     SAO,
     YIN
 }

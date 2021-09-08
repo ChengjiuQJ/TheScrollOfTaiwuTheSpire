@@ -35,8 +35,6 @@ public class BiHuYouQiangGong extends CustomCard
     public static AbstractCard.CardType cardType = AbstractCard.CardType.ATTACK;
     private static AbstractCard.CardRarity CARD_RARITY = CardRarity.BASIC;
     private static AbstractCard.CardTarget CARD_TARGET = CardTarget.SELF;
-    private static final AttackType[] GET_SHI_TYPE = new AttackType[]{AttackType.BENG};//获得式的种类
-    private static final int[] GET_SHI_COUNT=new int[]{1};//获得的式的数量
 
     public BiHuYouQiangGong()
     {

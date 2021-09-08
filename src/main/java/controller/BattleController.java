@@ -1,17 +1,25 @@
 package controller;
 
+import UI.Shi;
+import UI.ShiPlaceHolder;
 import UI.TaiwuPanel;
+import Utils.TextureLoader;
 import basemod.BaseMod;
 import basemod.TopPanelItem;
 import basemod.interfaces.OnStartBattleSubscriber;
 import basemod.interfaces.PostBattleSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
 import cards.AttackType;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.ui.panels.AbstractPanel;
-import org.apache.logging.log4j.LogManager;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.MathUtils;
 
-import java.rmi.Remote;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+
+import org.apache.logging.log4j.LogManager;
+import reina.yui.Yui;
+import reina.yui.YuiClickableObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -19,7 +27,7 @@ import java.util.HashMap;
  * @version 1.0
  * Create by 2021/9/7 16:12
  */
-public class BattleController implements OnStartBattleSubscriber, PostBattleSubscriber, PostInitializeSubscriber
+public class BattleController implements OnStartBattleSubscriber, PostBattleSubscriber,PostInitializeSubscriber
 {
     public static BattleController instance;
 
@@ -27,19 +35,57 @@ public class BattleController implements OnStartBattleSubscriber, PostBattleSubs
 
     private HashMap<AttackType,Integer> battleShi;
     private AttackType[] shiQueue;
-    private int headIndex;
     private int currentIndex;
-    private TopPanelItem panel;
+    private YuiClickableObject panel;
+    private ShiPlaceHolder[] shiPlaceHolders;
+    private HashMap<AttackType, Texture> shiTextures;
 
     public BattleController()
     {
         instance = this;
         BaseMod.subscribe(this);
+
+    }
+
+    public void costShi(AttackType attackType)
+    {
+        for(int i=0;i<=currentIndex;i++)
+        {
+            if(shiPlaceHolders[i].shi.attackType==attackType)
+            {
+                Shi shi = shiPlaceHolders[i].shi;
+                Yui.Companion.remove(shi);
+                shiPlaceHolders[i].shi=null;
+                for(int j=i+1;j<=currentIndex;j++)
+                {
+                    shiPlaceHolders[j-1].addShi(shiPlaceHolders[j].shi);
+                }
+                return;
+            }
+
+        }
     }
 
     private void initPanel()
     {
-
+        if(panel==null)
+        {
+            panel = new TaiwuPanel();
+        }
+        Yui.Companion.add(panel);
+        if(shiPlaceHolders==null)
+        {
+            shiPlaceHolders = new ShiPlaceHolder[6];
+            float x = panel.getX()+65F;
+            float y = panel.getY()+65F;
+            float r = 55F;
+            for(int i=0;i<6;i++)
+            {
+                float deg = i*60+30;
+                shiPlaceHolders[i] = new ShiPlaceHolder(MathUtils.sinDeg(deg)*r+x,MathUtils.cosDeg(deg)*r+y);
+                logger.info("shiPlaceHolder "+i+": x="+shiPlaceHolders[i].x+" y="+shiPlaceHolders[i].y);
+            }
+        }
     }
 
     @Override
@@ -47,7 +93,6 @@ public class BattleController implements OnStartBattleSubscriber, PostBattleSubs
     {
         battleShi = new HashMap<>();
         shiQueue = new AttackType[6];
-        headIndex=0;
         currentIndex = 0;
         initPanel();
     }
@@ -60,88 +105,68 @@ public class BattleController implements OnStartBattleSubscriber, PostBattleSubs
 
     public void HidePanel()
     {
-
-    }
-
-    public void gainShi(AttackType[] types,int[] counts)
-    {
-        int length = 0;
-        if(types.length!=counts.length)
+        Yui.Companion.remove(panel);
+        for(int i=0;i<6;i++)
         {
-            logger.warn("the count of attackType and counts was not matched");
-            length = Math.min(types.length,counts.length);
-        }
-        else
-            length = types.length;
-        for(int i=0;i<length;i++)
-        {
-            for(int j=0;j<counts[i];j++)
-                addToShiQueue(types[i]);
+            Shi shi = shiPlaceHolders[i].shi;
+            if(shi!=null)
+            {
+                Yui.Companion.remove(shi);
+                shiPlaceHolders[i].shi = null;
+            }
         }
     }
 
-    private void addToShiQueue(AttackType attackType)
+
+    public Shi addShi(AttackType attackType)
     {
-        if(shiQueue[currentIndex]==null)
+        logger.info("add shi"+attackType.toString());
+        Shi temp = new Shi(shiTextures.get(attackType),800,450,attackType);
+        Yui.Companion.add(temp);
+        logger.info("render shi");
+        if(shiPlaceHolders[currentIndex].isEmpty())
         {
-            shiQueue[currentIndex]=attackType;
-            int value = battleShi.getOrDefault(attackType, 0);
-            battleShi.put(attackType,value+1);
+            shiPlaceHolders[currentIndex].addShi(temp);
         }
         else
         {
-            AttackType old = shiQueue[currentIndex];
-            int value = battleShi.containsKey(old)? battleShi.get(attackType):0;
-            battleShi.put(old,value-1);
-            headIndex++;
-            headIndex%=6;
-            shiQueue[currentIndex]=attackType;
-            value = battleShi.getOrDefault(attackType, 0);
-            battleShi.put(attackType,value+1);
+            for(int i = currentIndex;i>=0;i--)
+            {
+                if(i+1<6)
+                    shiPlaceHolders[i+1].addShi(shiPlaceHolders[i].shi);
+                else
+                {
+                    Yui.Companion.remove(shiPlaceHolders[i].shi);
+                }
+            }
+            shiPlaceHolders[0].addShi(temp);
+            currentIndex++;
         }
-        currentIndex++;
-        currentIndex%=6;
-        logger.info("get shi:"+attackType.toString());
+        if(currentIndex>=6)
+            currentIndex=5;
+        return temp;
     }
 
-    public void consumeShi(AttackType[] types,int[] counts)
-    {
-        int length = 0;
-        if(types.length!=counts.length)
-        {
-            logger.warn("the count of attackType and counts was not matched");
-            length = Math.min(types.length,counts.length);
-        }
-        else
-            length = types.length;
-        for(int i=0;i<length;i++)
-        {
-            for(int j=0;i<counts[i];j++)
-                removeShiFromQueue(types[i]);
-        }
-    }
 
-    private void removeShiFromQueue(AttackType type)
+    public ArrayList<Shi> getAllShi()
     {
-        int index = headIndex;
-        while(shiQueue[index]!=type)
+        ArrayList<Shi> result = new ArrayList<>();
+        for(int i=0;i<6;i++)
         {
-            index++;
-            index%=6;
+            if(!shiPlaceHolders[i].isEmpty())
+                result.add(shiPlaceHolders[i].shi);
         }
-        shiQueue[index]=null;
-        int index2 = (index+1)%6;
-        while (index2!=currentIndex)
-        {
-            shiQueue[index2-1<0?index2+5:index2-1]=shiQueue[index2];
-            index2++;
-        }
+        return result;
     }
 
     @Override
     public void receivePostInitialize()
     {
-        panel =new TaiwuPanel();
-        BaseMod.addTopPanelItem(panel);
+        shiTextures = new HashMap<>();
+        AttackType[] temp = AttackType.values();
+        for(int i=0;i<temp.length;i++)
+        {
+            shiTextures.put(temp[i], TextureLoader.getTexture("img/ui/"+temp[i].toString()+".png"));
+        }
     }
 }

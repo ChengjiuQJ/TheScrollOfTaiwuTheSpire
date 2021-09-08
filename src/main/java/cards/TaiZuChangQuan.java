@@ -57,8 +57,8 @@ public class TaiZuChangQuan extends CustomCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        AbstractDungeon.actionManager.addToBottom(new GainSHIAction(p,GET_SHI_TYPE,GET_SHI_COUNT));
         AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+        AbstractDungeon.actionManager.addToBottom(new GainSHIAction(p,GET_SHI_TYPE,GET_SHI_COUNT));
     }
 
     @Override
@@ -73,5 +73,15 @@ public class TaiZuChangQuan extends CustomCard
             this.upgradeDamage(UPGRADE_PLUS_DMG);
             this.upgradeMagicNumber(UPGRADE_PLUS_MAGIC_NUMBER);
         }
+    }
+    @Override
+    public boolean hasEnoughEnergy()
+    {
+        boolean result = super.hasEnoughEnergy();
+        if(result)
+        {
+
+        }
+        return result;
     }
 }

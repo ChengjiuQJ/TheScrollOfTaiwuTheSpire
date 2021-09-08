@@ -1,5 +1,6 @@
 package cards;
 
+import actions.GainSHIAction;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -56,7 +57,7 @@ public class CardModel extends CustomCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-        BattleController.instance.gainShi(GET_SHI_TYPE,GET_SHI_COUNT);
+        AbstractDungeon.actionManager.addToBottom(new GainSHIAction(p,GET_SHI_TYPE,GET_SHI_COUNT));
     }
 
     // TODO: need to edit
