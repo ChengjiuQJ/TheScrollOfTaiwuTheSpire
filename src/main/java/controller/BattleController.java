@@ -60,6 +60,9 @@ public class BattleController implements OnStartBattleSubscriber, PostBattleSubs
                 {
                     shiPlaceHolders[j-1].addShi(shiPlaceHolders[j].shi);
                 }
+                currentIndex--;
+                if(currentIndex<0)
+                    currentIndex=0;
                 return;
             }
 

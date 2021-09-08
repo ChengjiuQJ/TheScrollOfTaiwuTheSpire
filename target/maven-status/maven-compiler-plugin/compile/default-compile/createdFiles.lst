@@ -1,5 +1,6 @@
 cards\AttackType.class
 cards\CardModel.class
+actions\PlayerAnimation.class
 actions\CostShiAction.class
 UI\TaiwuPanel.class
 controller\BattleController.class
@@ -18,3 +19,4 @@ UI\Shi.class
 UI\ShiPlaceHolder.class
 cards\BiHuYouQiangGong.class
 actions\GainSHIAction.class
+actions\PlayerAnimation$1.class

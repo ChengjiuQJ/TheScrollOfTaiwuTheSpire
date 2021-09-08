@@ -24,7 +24,7 @@ public class DecreaseShiAnimation extends AbstractGameAction
     {
         this.attackType = attackType;
         isCalled = false;
-        duration=0.5F;
+        duration=0.25F;
     }
     @Override
     public void update()
@@ -43,10 +43,10 @@ public class DecreaseShiAnimation extends AbstractGameAction
                 continue;
             else
             {
-                float setX = MathUtils.lerp(shi.getX(),shi.des.x,(0.5F-duration)/duration);
+                float setX = MathUtils.lerp(shi.getX(),shi.des.x,(0.25F-duration)/duration);
                 Log.log("setX = "+setX);
                 shi.setX(setX);
-                float setY = MathUtils.lerp(shi.getY(),shi.des.y,(0.5F-duration)/duration);
+                float setY = MathUtils.lerp(shi.getY(),shi.des.y,(0.25F-duration)/duration);
                 shi.setY(setY);
                 Log.log("shi "+shi.attackType.toString()+" position=("+shi.getX()+","+shi.getY()+"),des=("+shi.des.x+","+shi.des.y+")");
             }

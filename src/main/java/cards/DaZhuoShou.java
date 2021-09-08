@@ -2,6 +2,7 @@ package cards;
 
 import actions.CostShiAction;
 import actions.GainSHIAction;
+import actions.PlayerAnimation;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -55,10 +56,13 @@ public class DaZhuoShou extends CustomCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        AbstractDungeon.actionManager.addToBottom(new PlayerAnimation(p,m,"S_30103", AbstractGameAction.AttackEffect.BLUNT_HEAVY,new int[]{0,0,ATTACK_DMG,ATTACK_DMG}));
         AbstractDungeon.actionManager.addToBottom(new CostShiAction(COST_SHI_TYPE,COST_SHI_COUNT));
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m,
+        /*AbstractDungeon.actionManager.addToBottom(new DamageAction(m,
                 new DamageInfo(p, this.damage, this.damageTypeForTurn),
                 AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+
+         */
     }
 
     @Override

@@ -1,6 +1,7 @@
 package cards;
 
 import actions.GainSHIAction;
+import actions.PlayerAnimation;
 import basemod.abstracts.CustomCard;
 import characters.Taiwu;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -33,7 +34,7 @@ public class TaiZuChangQuan extends CustomCard
 
 
     private static final int COST = 1;//消耗的能量
-    private static final int ATTACK_DMG = 5;//基础攻击数值
+    private static final int ATTACK_DMG = 6;//基础攻击数值
     private static final int UPGRADE_PLUS_DMG = 3;//升级提升的攻击数值
     public static AbstractCard.CardType cardType = CardType.ATTACK;
     private static CardRarity CARD_RARITY = CardRarity.BASIC;
@@ -57,6 +58,7 @@ public class TaiZuChangQuan extends CustomCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        AbstractDungeon.actionManager.addToBottom(new PlayerAnimation(p,m,"S_30101", AbstractGameAction.AttackEffect.BLUNT_LIGHT,new int[]{1,1,2,2}));
         AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
         AbstractDungeon.actionManager.addToBottom(new GainSHIAction(p,GET_SHI_TYPE,GET_SHI_COUNT));
     }
