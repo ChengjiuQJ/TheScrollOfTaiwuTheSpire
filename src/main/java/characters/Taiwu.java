@@ -1,5 +1,6 @@
 package characters;
 
+import Utils.Log;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpineAnimation;
 import cards.CardColor;
@@ -10,6 +11,9 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.*;
+import com.esotericsoftware.spine.attachments.Attachment;
+import com.esotericsoftware.spine.attachments.MeshAttachment;
+import com.esotericsoftware.spine.attachments.RegionAttachment;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -54,6 +58,10 @@ public class Taiwu extends CustomPlayer
 
         loadAnimation(MY_CHARACTER_SKELETON_ATLAS, MY_CHARACTER_SKELETON_JSON, 4F); // if you're using modified versions of base game animations or made animations in spine make sure to include this bit and the following lines
         skeleton.setSkin("doll");
+        Log.log("foot_l rotation="+String.valueOf(skeleton.findBone("foot_l").getRotation()));
+        Log.log("foot_r rotation="+String.valueOf(skeleton.findBone("foot_r").getRotation()));
+        skeleton.findBone("foot_l").setRotation(60F);
+        skeleton.findBone("foot_r").setRotation(75F);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "C_000", true);
         e.setTime(e.getEndTime() * MathUtils.random());
     }

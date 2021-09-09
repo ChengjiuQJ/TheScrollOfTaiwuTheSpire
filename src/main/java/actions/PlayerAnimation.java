@@ -24,18 +24,19 @@ public class PlayerAnimation extends AbstractGameAction
     AbstractPlayer player;
     AbstractMonster monster;
     boolean isCalled;
-    String animationString;
+    String[] animationString;
     AttackEffect attackEffect;
     int[] damages;
     int index = 0;
     boolean hasMoved;
+    boolean hasPreAttacked;
     boolean hasAttacked;
     boolean isBack;
     float Timer;
     float desX;
     float desY;
     AnimationState.AnimationStateListener listener;
-    public PlayerAnimation(AbstractPlayer p, AbstractMonster m,String animationString,AttackEffect attackEffect,int[] damages)
+    public PlayerAnimation(AbstractPlayer p, AbstractMonster m,String[] animationString,AttackEffect attackEffect,int[] damages)
     {
         isCalled = false;
         player = p;
@@ -63,8 +64,19 @@ public class PlayerAnimation extends AbstractGameAction
             if(Timer>duration){
                 Timer = 0F;
                 hasMoved = true;
+                hasPreAttacked = false;
+                duration = player.state.setAnimation(0,animationString[0]+"_0",false).getEndTime();
+                duration += player.state.addAnimation(0,animationString[0]+"_1_1",false,0F).getEndTime();
+            }
+        }
+        else if(!hasPreAttacked)
+        {
+            Timer+=Gdx.graphics.getDeltaTime();
+            if(Timer>duration){
+                Timer = 0F;
+                hasPreAttacked = true;
                 hasAttacked = false;
-                duration = player.state.setAnimation(0,animationString,false).getEndTime();
+                duration = player.state.setAnimation(0,animationString[1],false).getEndTime();
                 player.state.addListener(listener=new AnimationState.AnimationStateAdapter()
                 {
                     @Override
@@ -74,6 +86,14 @@ public class PlayerAnimation extends AbstractGameAction
                         AbstractDungeon.effectList.add(new FlashAtkImgEffect(monster.hb.cX, monster.hb.cY, attackEffect, false));
                         monster.damage(new DamageInfo(player,damages[index]));
                         index++;
+                        if(monster.isDead)
+                        {
+                            hasAttacked = true;
+                            Timer = 0F;
+                            isBack =false;
+                            player.state.removeListener(listener);
+                            duration = player.state.setAnimation(0,"C_004",false).getEndTime();
+                        }
                     }
                 });
             }

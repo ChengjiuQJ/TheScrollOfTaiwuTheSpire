@@ -1,9 +1,11 @@
 package cards;
 
 import actions.GainSHIAction;
+import actions.PlayerAnimation;
 import basemod.abstracts.CustomCard;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -12,8 +14,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 import controller.BattleController;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * @author 57680
@@ -23,7 +27,7 @@ import controller.BattleController;
 public class CardModel extends CustomCard
 {
     // TODO: need to edit
-    public static final String ID = "大拙手";
+    public static final String ID = "";
 
     private static CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     // Get object containing the strings that are displayed in the game.
@@ -39,8 +43,13 @@ public class CardModel extends CustomCard
     private static final CardType cardType = CardType.ATTACK;
     private static final CardRarity CARD_RARITY = CardRarity.SPECIAL;
     private static final CardTarget CARD_TARGET = CardTarget.NONE;
-    private static final AttackType[] GET_SHI_TYPE = new AttackType[]{AttackType.BENG};//获得式的种类
-    private static final int[] GET_SHI_COUNT=new int[]{1};//获得的式的数量
+    private static final AttackType[] GET_SHI_TYPE = new AttackType[]{};
+    private static final int[] GET_SHI_COUNT=new int[]{};//获得的式的数量
+    private static final AttackType[] COST_SHI_TYPE = new AttackType[]{};
+    private static final int[] COST_SHI_COUNT=new int[]{};//获得的式的数量
+    private static final int[] damages = new int[]{0,0,0,0};
+    private static final String[] ANIMATION_STRING = new String[]{};
+
     private static final int MAGIC_NUMBER = 1;
     private static final int UPGRADE_PLUS_MAGIC_NUMBER = 1;
 
@@ -56,6 +65,7 @@ public class CardModel extends CustomCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        AbstractDungeon.actionManager.addToBottom(new PlayerAnimation(p,m, ANIMATION_STRING, AbstractGameAction.AttackEffect.NONE,damages));
         AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
         AbstractDungeon.actionManager.addToBottom(new GainSHIAction(p,GET_SHI_TYPE,GET_SHI_COUNT));
     }
@@ -73,5 +83,42 @@ public class CardModel extends CustomCard
             this.upgradeDamage(UPGRADE_PLUS_DMG);
             this.upgradeMagicNumber(UPGRADE_PLUS_MAGIC_NUMBER);
         }
+    }
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+        boolean result = super.canUse(p,m);
+        if(Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT))
+        {
+            return result&&hasEnoughShi(p,COST_SHI_TYPE,COST_SHI_COUNT);
+        }
+        return result;
+    }
+
+    private boolean hasEnoughShi(AbstractPlayer p, AttackType[] costShiType, int[] costShiCount)
+    {
+        if(costShiType.length==0)
+            return true;
+        ArrayList<AttackType> needShiCollection = new ArrayList<>();
+        for(int i=0;i<costShiType.length;i++)
+            for(int j=0;j<costShiCount[i];j++)
+                needShiCollection.add(costShiType[i]);
+        Iterator<AttackType> i = needShiCollection.iterator();
+        ArrayList<AttackType> allShi = BattleController.instance.getAllAttackType();
+        while (i.hasNext())
+        {
+            AttackType e = i.next();
+            if(allShi.contains(e))
+            {
+                allShi.remove(e);
+            }
+            else
+            {
+                cantUseMessage = "没有足够的式来施展这张牌！";
+                return false;
+            }
+        }
+        return true;
+
     }
 }

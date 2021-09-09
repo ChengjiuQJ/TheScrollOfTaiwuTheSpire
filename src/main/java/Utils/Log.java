@@ -20,7 +20,7 @@ public class Log
         StringBuilder sb = new StringBuilder();
         for(int i=0;i<objects.length;i++)
         {
-            sb.append(objects.toString());
+            sb.append(objects[i].toString());
         }
         log(sb.toString());
     }

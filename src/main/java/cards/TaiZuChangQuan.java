@@ -4,6 +4,8 @@ import actions.GainSHIAction;
 import actions.PlayerAnimation;
 import basemod.abstracts.CustomCard;
 import characters.Taiwu;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -16,6 +18,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import controller.BattleController;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * @author 57680
@@ -36,6 +41,8 @@ public class TaiZuChangQuan extends CustomCard
     private static final int COST = 1;//消耗的能量
     private static final int ATTACK_DMG = 6;//基础攻击数值
     private static final int UPGRADE_PLUS_DMG = 3;//升级提升的攻击数值
+    private static final int MAGIC_NUMBER = 1;
+    private static final int UPGRADE_PLUS_MAGIC_NUMBER = 1;
     public static AbstractCard.CardType cardType = CardType.ATTACK;
     private static CardRarity CARD_RARITY = CardRarity.BASIC;
     private static CardTarget CARD_TARGET = CardTarget.ENEMY;
@@ -43,14 +50,15 @@ public class TaiZuChangQuan extends CustomCard
     private static final int[] GET_SHI_COUNT=new int[]{1};//获得的式的数量
     private static final AttackType[] COST_SHI_TYPE = new AttackType[]{};//获得式的种类
     private static final int[] COST_SHI_COUNT=new int[]{};//获得的式的数量
-    private static final int MAGIC_NUMBER = 1;
-    private static final int UPGRADE_PLUS_MAGIC_NUMBER = 1;
+    private static final int[] damages = new int[]{1,1,2,2};
+    private static final String[] ANIMATION_STRING = new String[]{"C_1500","S_150001"};
+
 
     public TaiZuChangQuan()
     {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION,
                 cardType, cardColor,
-                AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ENEMY);
+                CARD_RARITY, CARD_TARGET);
         this.magicNumber = this.baseMagicNumber = MAGIC_NUMBER;
         this.damage=this.baseDamage = ATTACK_DMG;
     }
@@ -58,7 +66,6 @@ public class TaiZuChangQuan extends CustomCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        AbstractDungeon.actionManager.addToBottom(new PlayerAnimation(p,m,"S_30101", AbstractGameAction.AttackEffect.BLUNT_LIGHT,new int[]{1,1,2,2}));
         AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
         AbstractDungeon.actionManager.addToBottom(new GainSHIAction(p,GET_SHI_TYPE,GET_SHI_COUNT));
     }
@@ -77,13 +84,40 @@ public class TaiZuChangQuan extends CustomCard
         }
     }
     @Override
-    public boolean hasEnoughEnergy()
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-        boolean result = super.hasEnoughEnergy();
-        if(result)
+        boolean result = super.canUse(p,m);
+        if(Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT))
         {
-
+            return result&&hasEnoughShi(p,COST_SHI_TYPE,COST_SHI_COUNT);
         }
         return result;
+    }
+
+    private boolean hasEnoughShi(AbstractPlayer p, AttackType[] costShiType, int[] costShiCount)
+    {
+        if(costShiType.length==0)
+            return true;
+        ArrayList<AttackType> needShiCollection = new ArrayList<>();
+        for(int i=0;i<costShiType.length;i++)
+            for(int j=0;j<costShiCount[i];j++)
+                needShiCollection.add(costShiType[i]);
+        Iterator<AttackType> i = needShiCollection.iterator();
+        ArrayList<AttackType> allShi = BattleController.instance.getAllAttackType();
+        while (i.hasNext())
+        {
+            AttackType e = i.next();
+            if(allShi.contains(e))
+            {
+                allShi.remove(e);
+            }
+            else
+            {
+                cantUseMessage = "没有足够的式来施展这张牌！";
+                return false;
+            }
+        }
+        return true;
+
     }
 }

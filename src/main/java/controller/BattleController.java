@@ -161,6 +161,16 @@ public class BattleController implements OnStartBattleSubscriber, PostBattleSubs
         }
         return result;
     }
+    public ArrayList<AttackType> getAllAttackType()
+    {
+        ArrayList<AttackType> result = new ArrayList<>();
+        for(int i=0;i<6;i++)
+        {
+            if(!shiPlaceHolders[i].isEmpty())
+                result.add(shiPlaceHolders[i].shi.attackType);
+        }
+        return result;
+    }
 
     @Override
     public void receivePostInitialize()
