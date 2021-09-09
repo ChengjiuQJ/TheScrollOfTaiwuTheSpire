@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 
+import java.util.ArrayList;
 import java.util.concurrent.Delayed;
 
 /**
@@ -26,7 +27,7 @@ public class PlayerAnimation extends AbstractGameAction
     boolean isCalled;
     String[] animationString;
     AttackEffect attackEffect;
-    int[] damages;
+    ArrayList<Integer> damages;
     int index = 0;
     boolean hasMoved;
     boolean hasPreAttacked;
@@ -36,7 +37,7 @@ public class PlayerAnimation extends AbstractGameAction
     float desX;
     float desY;
     AnimationState.AnimationStateListener listener;
-    public PlayerAnimation(AbstractPlayer p, AbstractMonster m,String[] animationString,AttackEffect attackEffect,int[] damages)
+    public PlayerAnimation(AbstractPlayer p, AbstractMonster m, String[] animationString, AttackEffect attackEffect, ArrayList<Integer> damages)
     {
         isCalled = false;
         player = p;
@@ -84,7 +85,7 @@ public class PlayerAnimation extends AbstractGameAction
                     {
                         super.event(trackIndex, event);
                         AbstractDungeon.effectList.add(new FlashAtkImgEffect(monster.hb.cX, monster.hb.cY, attackEffect, false));
-                        monster.damage(new DamageInfo(player,damages[index]));
+                        monster.damage(new DamageInfo(player, damages.get(index)));
                         index++;
                         if(monster.isDead)
                         {

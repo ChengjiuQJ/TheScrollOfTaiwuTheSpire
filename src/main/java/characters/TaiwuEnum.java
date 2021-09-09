@@ -12,5 +12,13 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 public class TaiwuEnum
 {
     @SpireEnum
-    public static CardLibrary.LibraryType TAIWU_COLOR;
+    public static CardLibrary.LibraryType QUANZHANG;
+    @SpireEnum
+    public static CardLibrary.LibraryType DAOJIAN;
+    @SpireEnum
+    public static CardLibrary.LibraryType YVSHE;
+    @SpireEnum
+    public static CardLibrary.LibraryType QIMENG;
+    @SpireEnum
+    public static CardLibrary.LibraryType TONGYONG;
 }

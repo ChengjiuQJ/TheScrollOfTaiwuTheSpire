@@ -13,10 +13,10 @@ Utils\Log.class
 characters\TaiwuEnum.class
 cards\CardColor.class
 controller\TheScrollOfTaiwuTheSpire.class
+cards\AbstractTaiwuCard.class
 characters\Taiwu.class
 cards\DaZhuoShou.class
 UI\Shi.class
 UI\ShiPlaceHolder.class
-cards\BiHuYouQiangGong.class
 actions\GainSHIAction.class
 actions\PlayerAnimation$1.class

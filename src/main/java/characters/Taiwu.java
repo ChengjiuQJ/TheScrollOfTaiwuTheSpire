@@ -3,6 +3,7 @@ package characters;
 import Utils.Log;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpineAnimation;
+import cards.AbstractTaiwuCard;
 import cards.CardColor;
 import cards.DaZhuoShou;
 import com.badlogic.gdx.Gdx;
@@ -69,11 +70,12 @@ public class Taiwu extends CustomPlayer
 
     public ArrayList<String> getStartingDeck() { // starting deck 'nuff said
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add("太祖长拳");
-        retVal.add("太祖长拳");
-        retVal.add("太祖长拳");
-        retVal.add("太祖长拳");
-        retVal.add("太祖长拳");
+        retVal.add("太祖长拳崩");
+        retVal.add("太祖长拳崩");
+        retVal.add("太祖长拳点");
+        retVal.add("太祖长拳点");
+        retVal.add("太祖长拳拿");
+        retVal.add("太祖长拳拿");
         retVal.add("大拙手");
         return retVal;
     }
@@ -119,7 +121,7 @@ public class Taiwu extends CustomPlayer
     @Override
     public AbstractCard.CardColor getCardColor()
     {
-        return CardColor.TAIWU_COLOR;
+        return CardColor.QUANZHANG;
     }
 
     /**
@@ -139,7 +141,7 @@ public class Taiwu extends CustomPlayer
     @Override
     public AbstractCard getStartCardForEvent()
     {
-        return new DaZhuoShou();
+        return AbstractTaiwuCard.initCard("大拙手");
     }
 
     /**
