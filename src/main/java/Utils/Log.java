@@ -24,4 +24,19 @@ public class Log
         }
         log(sb.toString());
     }
+
+    public static int getInt(String s)
+    {
+        if(s.equals(""))
+            return 0;
+        try
+        {
+            return Integer.parseInt(s);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

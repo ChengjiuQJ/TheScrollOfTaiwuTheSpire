@@ -76,7 +76,10 @@ public class Taiwu extends CustomPlayer
         retVal.add("太祖长拳点");
         retVal.add("太祖长拳拿");
         retVal.add("太祖长拳拿");
-        retVal.add("大拙手");
+        retVal.add("小纵跃功");
+        retVal.add("小纵跃功");
+        retVal.add("小纵跃功");
+        retVal.add("小纵跃功");
         return retVal;
     }
 

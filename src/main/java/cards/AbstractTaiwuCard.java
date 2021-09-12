@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import controller.BattleController;
 import controller.TheScrollOfTaiwuTheSpire;
@@ -32,6 +33,7 @@ public abstract class AbstractTaiwuCard extends CustomCard
     protected CardStrings cardStrings;
     protected String name;
     protected int cost;
+    protected int costUpdateValue;
     protected String description;
     protected String imgPath;
     protected CardColor cardColor;
@@ -59,7 +61,7 @@ public abstract class AbstractTaiwuCard extends CustomCard
     {
         super(id, name, img, cost, rawDescription, type, color, rarity, target);
         this.id = id;
-        cardStrings = CardCrawlGame.languagePack.getCardStrings("id");
+        cardStrings = CardCrawlGame.languagePack.getCardStrings(id);
         this.cost = cost;
         imgPath = img;
         description = rawDescription;
@@ -84,6 +86,7 @@ public abstract class AbstractTaiwuCard extends CustomCard
             CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(id);
             String name = cardStrings.NAME;
             int cost = Integer.parseInt(data[3]);
+            int costUpgrade = getInt(data[4]);
             String description = cardStrings.DESCRIPTION;
             String imgPath = "img/cards/"+id+".png";
             CardColor cardColor = Enum.valueOf(CardColor.class,data[5]);
@@ -169,7 +172,6 @@ public abstract class AbstractTaiwuCard extends CustomCard
         } catch (Exception e)
         {
             Log.log("sorry, the card "+id+" is not complete");
-            e.printStackTrace();
         }
         return null;
     }
@@ -179,7 +181,7 @@ public abstract class AbstractTaiwuCard extends CustomCard
         for (int i = 0; i < percent.size(); i++) {
             int value = 0;
             if (rest > 0) {
-                value = (int)Math.floor(sum * percent.get(i) / 100);
+                value = (int)Math.floor(sum * percent.get(i) / 100F);
                 if (value == 0) {
                     value = 1;
                 }
@@ -210,8 +212,10 @@ public abstract class AbstractTaiwuCard extends CustomCard
             this.upgradeDamage(damageUpdateValue);
             this.upgradeBlock(blockUpdateValue);
             this.upgradeMagicNumber(magicUpdateValue);
+            this.upgradeBaseCost(Math.max(cost + costUpdateValue, 0));
         }
     }
+
 
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
