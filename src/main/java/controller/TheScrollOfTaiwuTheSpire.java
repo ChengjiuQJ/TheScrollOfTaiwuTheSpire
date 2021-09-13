@@ -46,60 +46,7 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
         CardColor.initalize();
     }
 
-    private String setCardDescription()
-    {
-        HashMap<String,CardStrings> cardStrings = new HashMap<>();
-        for(Map.Entry<String,String[]> e : cardsData.entrySet())
-        {
-            String id = e.getKey();
-            String[] data  =e.getValue();
-            CardStrings temp = new CardStrings();
-            temp.NAME = id;
-            String[] tokens = data[20].split(" ");
-            StringBuilder sb = new StringBuilder();
-            if(!data[19].equals(""))
-            {
-                sb.append("获得：");
-                String[] attackTypes = data[19].split("&");
-                for(int i=0;i<attackTypes.length;i++)
-                {
-                    String[] attackType = attackTypes[i].split("\\*");
-                    for(int j=0;j<Log.getInt(attackType[1]);j++)
-                    {
-                        sb.append(" ");
-                        sb.append(attackType[0]);
-                    }
 
-                }
-                sb.append(" NL ");
-            }
-            for(String token:tokens)
-            {
-                if (token.charAt(0) == 'D')
-                {
-                    token = "!" + token + "!";
-                }
-                else if (token.charAt(0) == 'B')
-                {
-                    token = "!B!";
-                }
-                else if (token.charAt(0) == 'M')
-                {
-                    token = "!M!";
-                }
-                else if (token.equals("C1"))
-                    token = "!C1!";
-                else if (token.equals("C2"))
-                    token = "!C2!";
-                sb.append(token);
-                sb.append(' ');
-            }
-            temp.DESCRIPTION = sb.toString();
-            cardStrings.put(id,temp);
-        }
-        String json = BaseMod.gson.toJson(cardStrings);
-        return json;
-    }
 
 
     /**
@@ -187,6 +134,60 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
         BaseMod.loadCustomStrings(CardStrings.class,setCardDescription());
         BaseMod.loadCustomStringsFile(RelicStrings.class,"taiwuLocalization/zhs/taiwuRelics.json");
         //BaseMod.loadCustomStringsFile(CardStrings.class,"taiwuLocalization/zhs/taiwuCards.json");
+    }
+    private String setCardDescription()
+    {
+        HashMap<String,CardStrings> cardStrings = new HashMap<>();
+        for(Map.Entry<String,String[]> e : cardsData.entrySet())
+        {
+            String id = e.getKey();
+            String[] data  =e.getValue();
+            CardStrings temp = new CardStrings();
+            temp.NAME = id;
+            String[] tokens = data[20].split(" ");
+            StringBuilder sb = new StringBuilder();
+            if(!data[19].equals(""))
+            {
+                sb.append("获得：");
+                String[] attackTypes = data[19].split("&");
+                for(int i=0;i<attackTypes.length;i++)
+                {
+                    String[] attackType = attackTypes[i].split("\\*");
+                    for(int j=0;j<Log.getInt(attackType[1]);j++)
+                    {
+                        sb.append(" ");
+                        sb.append(attackType[0]);
+                    }
+
+                }
+                sb.append(" NL ");
+            }
+            for(String token:tokens)
+            {
+                if (token.charAt(0) == 'D')
+                {
+                    token = "!" + token + "!";
+                }
+                else if (token.charAt(0) == 'B')
+                {
+                    token = "!B!";
+                }
+                else if (token.charAt(0) == 'M')
+                {
+                    token = "!M!";
+                }
+                else if (token.equals("C1"))
+                    token = "!C1!";
+                else if (token.equals("C2"))
+                    token = "!C2!";
+                sb.append(token);
+                sb.append(' ');
+            }
+            temp.DESCRIPTION = sb.toString();
+            cardStrings.put(id,temp);
+        }
+        String json = BaseMod.gson.toJson(cardStrings);
+        return json;
     }
 
     @Override

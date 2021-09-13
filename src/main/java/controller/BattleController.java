@@ -161,6 +161,7 @@ public class BattleController implements OnStartBattleSubscriber, PostBattleSubs
         }
         return result;
     }
+
     public ArrayList<AttackType> getAllAttackType()
     {
         ArrayList<AttackType> result = new ArrayList<>();
@@ -170,6 +171,25 @@ public class BattleController implements OnStartBattleSubscriber, PostBattleSubs
                 result.add(shiPlaceHolders[i].shi.attackType);
         }
         return result;
+    }
+
+    public int getDiffrentAttackType()
+    {
+        ArrayList<AttackType> result = new ArrayList<>();
+        for(int i=0;i<6;i++)
+        {
+            if(!shiPlaceHolders[i].isEmpty()&&!result.contains(shiPlaceHolders[i].shi.attackType))
+                result.add(shiPlaceHolders[i].shi.attackType);
+        }
+        return result.size();
+    }
+
+    public AttackType getRecentAttackType()
+    {
+        if(shiPlaceHolders[0].isEmpty())
+            return null;
+        else
+            return shiPlaceHolders[0].shi.attackType;
     }
 
     @Override

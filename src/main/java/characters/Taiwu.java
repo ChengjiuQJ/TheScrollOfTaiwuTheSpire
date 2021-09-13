@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
@@ -29,6 +30,8 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import controller.TheScrollOfTaiwuTheSpire;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * @author 57680
@@ -125,6 +128,38 @@ public class Taiwu extends CustomPlayer
     public AbstractCard.CardColor getCardColor()
     {
         return CardColor.QUANZHANG;
+    }
+
+    @Override
+    public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> abstractCards)
+    {
+        ArrayList<AbstractCard> cards= super.getCardPool(abstractCards);
+        cards = getTaiwuCardPool(cards,CardColor.TONGYONG);
+        return cards;
+    }
+
+    public ArrayList<AbstractCard> getTaiwuCardPool(ArrayList<AbstractCard> tmpPool, AbstractCard.CardColor color)
+    {
+        Iterator var3 = CardLibrary.cards.entrySet().iterator();
+
+        while(true) {
+            Map.Entry c;
+            AbstractCard card;
+            do {
+                do {
+                    do {
+                        if (!var3.hasNext()) {
+                            return tmpPool;
+                        }
+
+                        c = (Map.Entry)var3.next();
+                        card = (AbstractCard)c.getValue();
+                    } while(!card.color.equals(color));
+                } while(card.rarity == AbstractCard.CardRarity.BASIC);
+            } while(UnlockTracker.isCardLocked((String)c.getKey()) && !Settings.isDailyRun);
+
+            tmpPool.add(card);
+        }
     }
 
     /**
