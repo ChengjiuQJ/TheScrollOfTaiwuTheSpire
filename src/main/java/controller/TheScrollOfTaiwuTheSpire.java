@@ -140,6 +140,7 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
             CardStrings temp = new CardStrings();
             temp.NAME = id;
             temp.DESCRIPTION = getGongFaDescription(data[20],data[19],data[22]);
+            // TODO: 2021/9/15 添加读取升级后描述 
             temp.EXTENDED_DESCRIPTION = getGongFaDescriptionEX(data[23],data[22]);
             cardStrings.put(id,temp);
         }
@@ -235,6 +236,7 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
         }
         else
         {
+            sb.append("NL ");
             sb.append("施展 ：");
             String[] attackTypes = costAttackType.split("&");
             for(int i=0;i<attackTypes.length;i++)
@@ -257,6 +259,6 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
         AttackType[] attackTypes = AttackType.values();
         for (AttackType attackType : attackTypes)
             BaseMod.addKeyword(new String[]{attackType.toString()}, "式的一种。式是用来施展武学的资源，消耗式施展的武学比一般使用更加强劲。");
-        BaseMod.addKeyword(new String[]{"施展"},"施展武学便是消耗一定式以释放全新的强化效果。按住Left-Ctrl键以查看施展的效果。");
+        BaseMod.addKeyword(new String[]{"施展"},"施展武学便是消耗一定数量的式来释放全新的强化武学效果。按住Left-Ctrl键以查看施展的效果。");
     }
 }

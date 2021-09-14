@@ -4,19 +4,18 @@ import Utils.Log;
 import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.InputAdapter;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DescriptionLine;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.sun.org.apache.xpath.internal.functions.FuncFalse;
 import controller.BattleController;
 import controller.TheScrollOfTaiwuTheSpire;
 
-import java.io.FileReader;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -35,6 +34,8 @@ public abstract class AbstractTaiwuCard extends CustomCard
     protected int cost;
     protected int costUpdateValue;
     protected String description;
+    protected ArrayList<DescriptionLine> rawDescriptions;
+    protected ArrayList<DescriptionLine> rawDescriptionEXs;
     protected String imgPath;
     protected CardColor cardColor;
     protected CardType cardType;
@@ -69,7 +70,46 @@ public abstract class AbstractTaiwuCard extends CustomCard
         cardType = type;
         cardRarity = rarity;
         cardTarget = target;
+        Gdx.input.setInputProcessor(new InputAdapter(){
+            @Override
+            public boolean keyDown(int x)
+            {
+                if(x==Input.Keys.CONTROL_LEFT)
+                {
+                    changeDescription(true);
+                }
+                return true;
+            }
+            @Override
+            public boolean keyUp(int x)
+            {
+                if(x==Input.Keys.CONTROL_LEFT)
+                {
+                    changeDescription(false);
+                }
+                return true;
+            }
+        });
     }
+
+    private void changeDescription(boolean ex)
+    {
+        if(ex)
+        {
+            if(cardStrings.EXTENDED_DESCRIPTION==null)
+                return;
+            rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
+            initializeDescriptionCN();
+            rawDescriptionEXs = super.description;
+        }
+        else
+        {
+            rawDescription = cardStrings.DESCRIPTION;
+            initializeDescriptionCN();
+            rawDescriptions = super.description;
+        }
+    }
+
 
     public static AbstractTaiwuCard initCard(String id)
     {
@@ -216,19 +256,6 @@ public abstract class AbstractTaiwuCard extends CustomCard
         }
     }
 
-    @Override
-    public void update()
-    {
-        super.update();
-        if(isCtrlPressed()&&cardStrings.EXTENDED_DESCRIPTION!=null)
-        {
-            this.description = cardStrings.EXTENDED_DESCRIPTION[0];
-        }
-        else if(upgraded)
-            this.description = cardStrings.UPGRADE_DESCRIPTION;
-        else
-            this.description = cardStrings.DESCRIPTION;
-    }
 
 
     @Override
@@ -241,6 +268,7 @@ public abstract class AbstractTaiwuCard extends CustomCard
         }
         return result;
     }
+
 
     public boolean isCtrlPressed()
     {

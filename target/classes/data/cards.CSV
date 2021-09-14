@@ -3,7 +3,7 @@ ID,NAME,图片,消耗能量,升级能量,卡牌颜色,卡牌种类,稀有度,目
 太祖长拳崩,TaiZuChangQuan,,1,,QUANZHANG,ATTACK,BASIC,ENEMY,6,3,,,,,,,,,崩*1,造成 D 点伤害。,BLUNT_LIGHT,,,,,,,,,,,,,,,,,,,,
 太祖长拳拿,TaiZuChangQuan,,1,,QUANZHANG,ATTACK,BASIC,ENEMY,6,3,,,,,,,,,点*1,造成 D 点伤害。,BLUNT_LIGHT,,,,,,,,,,,,,,,,,,,,
 太祖长拳点,TaiZuChangQuan,,1,,QUANZHANG,ATTACK,BASIC,ENEMY,6,3,,,,,,,,,拿*1,造成 D 点伤害。,BLUNT_LIGHT,,,,,,,,,,,,,,,,,,,,
-小纵跃功,XiaoZongYueGong,,1,,TONGYONG,SKILL,RARE,SELF,,,5,3,,,,,,,移*1,获得 B 点格挡。,,,,,,,,,,,,,,,,,,,,,
+小纵跃功,XiaoZongYueGong,,1,,TONGYONG,SKILL,BASIC,SELF,,,5,3,,,,,,,移*1,获得 B 点格挡。,,,,,,,,,,,,,,,,,,,,,
 大拙手,DaZhuoShou,,2,,QUANZHANG,ATTACK,RARE,ENEMY,9,4,,,,,,,,,崩*1,造成 D 点伤害。,BLUNT_LIGHT,崩*5,造成 D1 + D2 + D3 + D4 点伤害，若完全被对方格挡，立刻再次释放大拙手攻击敌人，且威力提升50%，直到造成伤害为止。,0|0|10|10,BLUNT_HEAVY,C_306&S_30609,,,,,,,,,,,,,,,
 五花八门,WuHuaBaMeng,,1,-1,TONGYONG,POWER,UNCOMMON,SELF,,,,,1,0,,,,,,当前每有一个不同的式，获得 M 点敏捷。 NL 消耗。,,,,,,,,,,,,,,,,,,,,,
 心无定意,XinWuDingYi,,0,,TONGYONG,SKILL,UNCOMMON,SELF,,,,,1,1,,,,,,复制最近获得的式 M 次。,,,,,,,,,,,,,,,,,,,,,

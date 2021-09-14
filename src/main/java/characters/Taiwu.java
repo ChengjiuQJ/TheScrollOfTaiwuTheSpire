@@ -83,6 +83,7 @@ public class Taiwu extends CustomPlayer
         retVal.add("小纵跃功");
         retVal.add("小纵跃功");
         retVal.add("小纵跃功");
+        retVal.add("大拙手");
         return retVal;
     }
 

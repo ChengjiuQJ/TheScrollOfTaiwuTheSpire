@@ -7,6 +7,7 @@ actions\CostShiAction.class
 UI\TaiwuPanel.class
 controller\BattleController.class
 actions\DecreaseShiAnimation.class
+cards\AbstractTaiwuCard$1.class
 Utils\TextureLoader.class
 cards\TaiZuChangQuan.class
 relics\FuYuJianBing.class
