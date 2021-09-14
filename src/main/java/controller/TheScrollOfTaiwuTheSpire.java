@@ -1,32 +1,27 @@
 package controller;
 
-import UI.TaiwuPanel;
 import Utils.Log;
 import basemod.BaseMod;
 import basemod.interfaces.*;
-import cards.*;
+import cards.AbstractTaiwuCard;
+import cards.AttackType;
+import cards.CardColor;
 import characters.Taiwu;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.evacipated.cardcrawl.modthespire.ReflectionHelper;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
-import com.google.gson.Gson;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 import org.apache.logging.log4j.LogManager;
-import reina.yui.Yui;
 import relics.FuYuJianBing;
 
-import java.io.*;
-import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
-import java.util.*;
-import java.util.logging.Logger;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 @SpireInitializer
 public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharactersSubscriber, EditRelicsSubscriber,EditStringsSubscriber, EditKeywordsSubscriber
@@ -144,61 +139,124 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
             String[] data  =e.getValue();
             CardStrings temp = new CardStrings();
             temp.NAME = id;
-            String[] tokens = data[20].split(" ");
-            StringBuilder sb = new StringBuilder();
-            if(!data[19].equals(""))
-            {
-                sb.append("获得：");
-                String[] attackTypes = data[19].split("&");
-                for(int i=0;i<attackTypes.length;i++)
-                {
-                    String[] attackType = attackTypes[i].split("\\*");
-                    for(int j=0;j<Log.getInt(attackType[1]);j++)
-                    {
-                        sb.append(" ");
-                        sb.append(attackType[0]);
-                    }
-
-                }
-                sb.append(" NL ");
-            }
-            for(String token:tokens)
-            {
-                if (token.charAt(0) == 'D')
-                {
-                    token = "!" + token + "!";
-                }
-                else if (token.charAt(0) == 'B')
-                {
-                    token = "!B!";
-                }
-                else if (token.charAt(0) == 'M')
-                {
-                    token = "!M!";
-                }
-                else if (token.equals("C1"))
-                    token = "!C1!";
-                else if (token.equals("C2"))
-                    token = "!C2!";
-                sb.append(token);
-                sb.append(' ');
-            }
-            temp.DESCRIPTION = sb.toString();
+            temp.DESCRIPTION = getGongFaDescription(data[20],data[19],data[22]);
+            temp.EXTENDED_DESCRIPTION = getGongFaDescriptionEX(data[23],data[22]);
             cardStrings.put(id,temp);
         }
-        String json = BaseMod.gson.toJson(cardStrings);
-        return json;
+        return BaseMod.gson.toJson(cardStrings);
+    }
+
+    private String[] getGongFaDescriptionEX(String src, String costAttackType)
+    {
+        if(src.equals(""))
+            return null;
+        StringBuilder sb = new StringBuilder();
+        sb.append(" 施展 ：");
+        String[] attackTypes = costAttackType.split("&");
+        for(int i=0;i<attackTypes.length;i++)
+        {
+            String[] attackType = attackTypes[i].split("\\*");
+            for(int j=0;j<Log.getInt(attackType[1]);j++)
+            {
+                sb.append(" ");
+                sb.append(attackType[0]);
+            }
+        }
+        sb.append(" NL ");
+        String[] tokens = src.split(" ");
+        for(String token:tokens)
+        {
+            if (token.charAt(0) == 'D')
+            {
+                token = "!" + token + "!";
+            }
+            else if (token.charAt(0) == 'B')
+            {
+                token = "!B!";
+            }
+            else if (token.charAt(0) == 'M')
+            {
+                token = "!M!";
+            }
+            else if (token.equals("C1"))
+                token = "!C1!";
+            else if (token.equals("C2"))
+                token = "!C2!";
+            sb.append(token);
+            sb.append(' ');
+        }
+        return new String[] {sb.substring(0,sb.length()-2)};
+    }
+
+    private String getGongFaDescription(String src,String getAttackType,String costAttackType)
+    {
+        String[] tokens = src.split(" ");
+        StringBuilder sb = new StringBuilder();
+        if(!getAttackType.equals(""))
+        {
+            sb.append("获得：");
+            String[] attackTypes = getAttackType.split("&");
+            for(int i=0;i<attackTypes.length;i++)
+            {
+                String[] attackType = attackTypes[i].split("\\*");
+                for(int j=0;j<Log.getInt(attackType[1]);j++)
+                {
+                    sb.append(" ");
+                    sb.append(attackType[0]);
+                }
+
+            }
+            sb.append(" NL ");
+        }
+        for(String token:tokens)
+        {
+            if (token.charAt(0) == 'D')
+            {
+                token = "!" + token + "!";
+            }
+            else if (token.charAt(0) == 'B')
+            {
+                token = "!B!";
+            }
+            else if (token.charAt(0) == 'M')
+            {
+                token = "!M!";
+            }
+            else if (token.equals("C1"))
+                token = "!C1!";
+            else if (token.equals("C2"))
+                token = "!C2!";
+            sb.append(token);
+            sb.append(' ');
+        }
+        if(costAttackType.equals(""))
+        {
+            return sb.toString().trim();
+        }
+        else
+        {
+            sb.append("施展 ：");
+            String[] attackTypes = costAttackType.split("&");
+            for(int i=0;i<attackTypes.length;i++)
+            {
+                String[] attackType = attackTypes[i].split("\\*");
+                for(int j=0;j<Log.getInt(attackType[1]);j++)
+                {
+                    sb.append(" ");
+                    sb.append(attackType[0]);
+                }
+            }
+            sb.append(" ");
+            return sb.toString();
+        }
     }
 
     @Override
     public void receiveEditKeywords()
     {
-        String[] keywords =new String[]{
-                "崩", "拿", "点",
-                "劈", "刺", "撩",
-                "掷", "御", "弹",
-                "扫", "缠", "音",
-        };
-        BaseMod.addKeyword(keywords,"式的一种。式是用来施展武学的资源，消耗式施展的武学比一般使用更加强劲。");
+        AttackType[] attackTypes = AttackType.values();
+        for (AttackType attackType : attackTypes)
+            BaseMod.addKeyword(new String[]{attackType.toString()}, "式的一种。式是用来施展武学的资源，消耗式施展的武学比一般使用更加强劲。");
+        BaseMod.addKeyword(new String[]{"施展"},"施展武学便是消耗一定式以释放全新的强化效果。按住Left-Ctrl键以查看施展的效果。");
     }
 }

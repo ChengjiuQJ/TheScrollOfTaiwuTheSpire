@@ -216,6 +216,20 @@ public abstract class AbstractTaiwuCard extends CustomCard
         }
     }
 
+    @Override
+    public void update()
+    {
+        super.update();
+        if(isCtrlPressed()&&cardStrings.EXTENDED_DESCRIPTION!=null)
+        {
+            this.description = cardStrings.EXTENDED_DESCRIPTION[0];
+        }
+        else if(upgraded)
+            this.description = cardStrings.UPGRADE_DESCRIPTION;
+        else
+            this.description = cardStrings.DESCRIPTION;
+    }
+
 
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)

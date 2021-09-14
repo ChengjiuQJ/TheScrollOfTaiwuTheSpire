@@ -1,6 +1,8 @@
+cards\XinWuDingYi.class
 cards\AttackType.class
 cards\CardModel.class
 actions\PlayerAnimation.class
+cards\QiXingHengLian.class
 actions\CostShiAction.class
 UI\TaiwuPanel.class
 controller\BattleController.class
@@ -13,6 +15,7 @@ Utils\Log.class
 characters\TaiwuEnum.class
 cards\CardColor.class
 controller\TheScrollOfTaiwuTheSpire.class
+cards\WuHuaBaMeng.class
 cards\AbstractTaiwuCard.class
 characters\Taiwu.class
 cards\DaZhuoShou.class
