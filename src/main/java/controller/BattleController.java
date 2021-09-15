@@ -9,10 +9,15 @@ import basemod.TopPanelItem;
 import basemod.interfaces.OnStartBattleSubscriber;
 import basemod.interfaces.PostBattleSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
+import cards.AbstractTaiwuCard;
 import cards.AttackType;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import org.apache.logging.log4j.LogManager;
@@ -44,7 +49,6 @@ public class BattleController implements OnStartBattleSubscriber, PostBattleSubs
     {
         instance = this;
         BaseMod.subscribe(this);
-
     }
 
     public void costShi(AttackType attackType)
@@ -201,5 +205,25 @@ public class BattleController implements OnStartBattleSubscriber, PostBattleSubs
         {
             shiTextures.put(temp[i], TextureLoader.getTexture("img/ui/"+temp[i].toString()+".png"));
         }
+        Gdx.input.setInputProcessor(new InputAdapter(){
+            @Override
+            public boolean keyDown(int x)
+            {
+                if(x== Input.Keys.CONTROL_LEFT)
+                {
+                    AbstractTaiwuCard.showExDescription = true;
+                }
+                return true;
+            }
+            @Override
+            public boolean keyUp(int x)
+            {
+                if(x==Input.Keys.CONTROL_LEFT)
+                {
+                    AbstractTaiwuCard.showExDescription = false;
+                }
+                return true;
+            }
+        });
     }
 }

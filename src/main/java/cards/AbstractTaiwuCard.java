@@ -57,6 +57,8 @@ public abstract class AbstractTaiwuCard extends CustomCard
     protected ArrayList<Integer> damageHeavy;
     protected AbstractGameAction.AttackEffect updatedAttackEffect;
     protected String[] animationString;
+    public static boolean showExDescription;
+    private boolean changed;
 
     public AbstractTaiwuCard(String id, String name, String img, int cost, String rawDescription, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
@@ -70,26 +72,7 @@ public abstract class AbstractTaiwuCard extends CustomCard
         cardType = type;
         cardRarity = rarity;
         cardTarget = target;
-        Gdx.input.setInputProcessor(new InputAdapter(){
-            @Override
-            public boolean keyDown(int x)
-            {
-                if(x==Input.Keys.CONTROL_LEFT)
-                {
-                    changeDescription(true);
-                }
-                return true;
-            }
-            @Override
-            public boolean keyUp(int x)
-            {
-                if(x==Input.Keys.CONTROL_LEFT)
-                {
-                    changeDescription(false);
-                }
-                return true;
-            }
-        });
+        changed =false;
     }
 
     private void changeDescription(boolean ex)
@@ -107,6 +90,17 @@ public abstract class AbstractTaiwuCard extends CustomCard
             rawDescription = cardStrings.DESCRIPTION;
             initializeDescriptionCN();
             rawDescriptions = super.description;
+        }
+    }
+
+    @Override
+    public void update()
+    {
+        super.update();
+        if(changed!=showExDescription)
+        {
+            changed = showExDescription;
+            changeDescription(showExDescription);
         }
     }
 
@@ -195,10 +189,10 @@ public abstract class AbstractTaiwuCard extends CustomCard
             {
                 String[] values = data[24].split("\\|");
                 card.damageSection = new ArrayList<Integer>();
-                card.damageSection.add(getInt(values[0]));
-                card.damageSection.add(getInt(values[1]));
-                card.damageSection.add(getInt(values[2]));
-                card.damageSection.add(getInt(values[3]));
+                card.damageSection.add(getInt(values[0])*5);
+                card.damageSection.add(getInt(values[1])*5);
+                card.damageSection.add(getInt(values[2])*5);
+                card.damageSection.add(getInt(values[3])*5);
                 card.damageHeavy = (ArrayList<Integer>) integerAllocationAlgorithm(card.damage, card.damageSection);
             }
             if(data[25].equals(""))
@@ -215,6 +209,7 @@ public abstract class AbstractTaiwuCard extends CustomCard
         }
         return null;
     }
+
     private static List<Integer> integerAllocationAlgorithm (Integer sum, List<Integer> percent) {
         int rest = sum;
         List<Integer> stepValue = new ArrayList<>();
@@ -222,9 +217,6 @@ public abstract class AbstractTaiwuCard extends CustomCard
             int value = 0;
             if (rest > 0) {
                 value = (int)Math.floor(sum * percent.get(i) / 100F);
-                if (value == 0) {
-                    value = 1;
-                }
                 if ((rest - value) <= 0) {
                     value = rest;
                     rest = 0;
@@ -318,5 +310,12 @@ public abstract class AbstractTaiwuCard extends CustomCard
             e.printStackTrace();
             return 0;
         }
+    }
+    public int getD(int index)
+    {
+        index--;
+        if(index>=0&&index<damageHeavy.size())
+            return damageHeavy.get(index);
+        return 0;
     }
 }

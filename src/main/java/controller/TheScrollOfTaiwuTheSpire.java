@@ -1,5 +1,9 @@
 package controller;
 
+import DynamicVariables.S1;
+import DynamicVariables.S2;
+import DynamicVariables.S3;
+import DynamicVariables.S4;
 import Utils.Log;
 import basemod.BaseMod;
 import basemod.interfaces.*;
@@ -13,12 +17,14 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 import org.apache.logging.log4j.LogManager;
 import relics.FuYuJianBing;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,6 +40,9 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
     {
         return instance;
     }
+    public static final String[] dynamicV = new String[]{
+            "D","B","M","C1","C2","S1","S2","S3","S4"
+    };
     public TheScrollOfTaiwuTheSpire()
     {
         BaseMod.subscribe(this);
@@ -102,6 +111,10 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
                 logger.info("add card:"+e.getKey());
             }
         }
+        BaseMod.addDynamicVariable(new S1());
+        BaseMod.addDynamicVariable(new S2());
+        BaseMod.addDynamicVariable(new S3());
+        BaseMod.addDynamicVariable(new S4());
         logger.info("adding cards done");
     }
 
@@ -128,7 +141,7 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
         loadCardData();
         BaseMod.loadCustomStrings(CardStrings.class,setCardDescription());
         BaseMod.loadCustomStringsFile(RelicStrings.class,"taiwuLocalization/zhs/taiwuRelics.json");
-        //BaseMod.loadCustomStringsFile(CardStrings.class,"taiwuLocalization/zhs/taiwuCards.json");
+        BaseMod.loadCustomStringsFile(PowerStrings.class,"taiwuLocalization/zhs/taiwuPowers.json");
     }
     private String setCardDescription()
     {
@@ -167,22 +180,14 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
         String[] tokens = src.split(" ");
         for(String token:tokens)
         {
-            if (token.charAt(0) == 'D')
+            for(String dv:dynamicV)
             {
-                token = "!" + token + "!";
+                if (token.equals(dv))
+                {
+                    token = "!" + token + "!";
+                    break;
+                }
             }
-            else if (token.charAt(0) == 'B')
-            {
-                token = "!B!";
-            }
-            else if (token.charAt(0) == 'M')
-            {
-                token = "!M!";
-            }
-            else if (token.equals("C1"))
-                token = "!C1!";
-            else if (token.equals("C2"))
-                token = "!C2!";
             sb.append(token);
             sb.append(' ');
         }
@@ -211,22 +216,14 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
         }
         for(String token:tokens)
         {
-            if (token.charAt(0) == 'D')
+            for(String dv:dynamicV)
             {
-                token = "!" + token + "!";
+                if (token.equals(dv))
+                {
+                    token = "!" + token + "!";
+                    break;
+                }
             }
-            else if (token.charAt(0) == 'B')
-            {
-                token = "!B!";
-            }
-            else if (token.charAt(0) == 'M')
-            {
-                token = "!M!";
-            }
-            else if (token.equals("C1"))
-                token = "!C1!";
-            else if (token.equals("C2"))
-                token = "!C2!";
             sb.append(token);
             sb.append(' ');
         }
