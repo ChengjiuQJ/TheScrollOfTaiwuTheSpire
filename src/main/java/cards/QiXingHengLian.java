@@ -33,6 +33,6 @@ public class QiXingHengLian extends AbstractTaiwuCard
     {
         AbstractPower power = AbstractTaiwuPower.initPower("QiXing",abstractPlayer);
         Log.log(power.name);
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(abstractPlayer,abstractMonster,power ));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(abstractPlayer,abstractPlayer,power ));
     }
 }

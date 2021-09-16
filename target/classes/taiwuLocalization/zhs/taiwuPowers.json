@@ -11,5 +11,12 @@
     "DESCRIPTIONS": [
       "获得的崩、点式都改为拿式。"
     ]
+  },
+  "MoveCost": {
+    "NAME": "移动点",
+    "DESCRIPTIONS": [
+      "你受到的所有攻击伤害下降 #b",
+      " 点。"
+    ]
   }
 }

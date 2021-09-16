@@ -30,6 +30,7 @@ DynamicVariables\S3.class
 cards\YaXingQuan.class
 powers\QiXingPower.class
 UI\ShiPlaceHolder.class
+powers\MoveCostPower.class
 actions\GainSHIAction.class
 DynamicVariables\S4.class
 actions\PlayerAnimation$1.class

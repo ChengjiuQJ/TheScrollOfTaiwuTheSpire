@@ -13,7 +13,8 @@ public class YaXingQuanPower extends AbstractTaiwuPower
     public YaXingQuanPower(String id, AbstractCreature owner)
     {
         super(id, owner);
-        isTurnBased = true;
+        type = PowerType.BUFF;
+        amount=1;
     }
 
     @Override

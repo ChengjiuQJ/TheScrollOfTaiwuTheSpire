@@ -2,12 +2,15 @@ package actions;
 
 import cards.AttackType;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import controller.BattleController;
+import controller.TheScrollOfTaiwuTheSpire;
 import powers.AbstractTaiwuPower;
+import powers.MoveCostPower;
 
 import java.util.Iterator;
 
@@ -38,8 +41,11 @@ public class GainSHIAction extends AbstractGameAction
             for(AbstractPower power:target.powers)
                 if(power instanceof AbstractTaiwuPower)
                     temp = ((AbstractTaiwuPower) power).onAttackTypeGet(temp);
-            for (int j=0;j<amount[i];j++)
-                addToTop(new AddShiAnimation(temp));
+            if(temp==AttackType.移)
+                addToTop(new ApplyPowerAction(target,target,AbstractTaiwuPower.initPower("MoveCost",target),amount[i]));
+            else
+                for (int j=0;j<amount[i];j++)
+                    addToTop(new AddShiAnimation(temp));
         }
         isDone = true;
     }

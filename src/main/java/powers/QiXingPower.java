@@ -20,6 +20,7 @@ public class QiXingPower extends AbstractTaiwuPower
         amount = 3;
         type = PowerType.BUFF;
         updateDescription();
+        isTurnBased=true;
     }
     @Override
     public void updateDescription()

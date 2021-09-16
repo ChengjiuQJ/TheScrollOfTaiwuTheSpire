@@ -5,6 +5,7 @@ import cards.AbstractTaiwuCard;
 import cards.AttackType;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -56,4 +57,16 @@ public abstract class AbstractTaiwuPower extends AbstractPower
     }
 
     public AttackType onAttackTypeGet(AttackType attackType){return attackType;}
+
+    @Override
+    public void atEndOfTurn(boolean isPlayer)
+    {
+        if(isTurnBased)
+        {
+           return;
+        }
+        amount--;
+        if(amount<=0)
+            addToTop(new RemoveSpecificPowerAction(owner,owner,this));
+    }
 }
