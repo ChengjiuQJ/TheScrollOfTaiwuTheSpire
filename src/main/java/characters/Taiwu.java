@@ -94,6 +94,7 @@ public class Taiwu extends CustomPlayer
         retVal.add("五花八门");
         retVal.add("七星横链");
         retVal.add("鸭形拳");
+        retVal.add("八卦步");
         return retVal;
     }
 

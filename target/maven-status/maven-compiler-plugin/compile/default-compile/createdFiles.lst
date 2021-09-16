@@ -6,6 +6,7 @@ actions\PlayerAnimation.class
 cards\QiXingHengLian.class
 actions\CostShiAction.class
 UI\TaiwuPanel.class
+powers\XieLiPower.class
 controller\BattleController.class
 actions\DecreaseShiAnimation.class
 Utils\TextureLoader.class
@@ -26,6 +27,7 @@ powers\YaXingQuanPower.class
 cards\DaZhuoShou.class
 cards\XiaoZongYueGong.class
 UI\Shi.class
+cards\BaGuaBu.class
 DynamicVariables\S3.class
 cards\YaXingQuan.class
 powers\QiXingPower.class

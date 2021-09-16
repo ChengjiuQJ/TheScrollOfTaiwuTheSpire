@@ -29,6 +29,8 @@ public class YaXingQuan extends AbstractTaiwuCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         super.use(p,m);
+        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), basicAttackEffect));
+        AbstractDungeon.actionManager.addToBottom(new GainSHIAction(p,getShiTyp,getShiCount));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p, AbstractTaiwuPower.initPower(className,p)));
         AbstractDungeon.actionManager.addToBottom(new ReleaseDescriptionAction());
 
