@@ -28,15 +28,17 @@ public class CardModel extends AbstractTaiwuCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if(isCtrlPressed())
+        super.use(p,m);
+        if(isCtrlPressed()||alwaysEx)
         {
-            AbstractDungeon.actionManager.addToBottom(new PlayerAnimation(p,m, animationString,updatedAttackEffect,damageHeavy));
             AbstractDungeon.actionManager.addToBottom(new CostShiAction(costShiTyp,costShiCount));
+            AbstractDungeon.actionManager.addToBottom(new PlayerAnimation(p,m, animationString,updatedAttackEffect,damageHeavy));
         }
         else
         {
             AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
             AbstractDungeon.actionManager.addToBottom(new GainSHIAction(p,getShiTyp,getShiCount));
         }
+
     }
 }

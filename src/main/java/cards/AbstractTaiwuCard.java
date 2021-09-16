@@ -4,7 +4,6 @@ import Utils.Log;
 import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputAdapter;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DescriptionLine;
@@ -12,7 +11,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.sun.org.apache.xpath.internal.functions.FuncFalse;
 import controller.BattleController;
 import controller.TheScrollOfTaiwuTheSpire;
 
@@ -27,6 +25,8 @@ import java.util.List;
  */
 public abstract class AbstractTaiwuCard extends CustomCard
 {
+    protected boolean alwaysEx;
+    protected boolean fixedDescription;
     protected String id;
     protected String[] data;
     protected CardStrings cardStrings;
@@ -73,11 +73,18 @@ public abstract class AbstractTaiwuCard extends CustomCard
         cardRarity = rarity;
         cardTarget = target;
         changed =false;
+        fixedDescription = false;
+        alwaysEx = false;
+    }
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
+        fixedDescription = true;
     }
 
-    private void changeDescription(boolean ex)
+    protected void changeDescription(boolean ex)
     {
-        if(ex)
+        if(ex||alwaysEx)
         {
             if(cardStrings.EXTENDED_DESCRIPTION==null)
                 return;
@@ -97,7 +104,8 @@ public abstract class AbstractTaiwuCard extends CustomCard
     public void update()
     {
         super.update();
-        if(changed!=showExDescription)
+        showExDescription = isCtrlPressed();
+        if(changed!=showExDescription&&!fixedDescription)
         {
             changed = showExDescription;
             changeDescription(showExDescription);
@@ -131,6 +139,7 @@ public abstract class AbstractTaiwuCard extends CustomCard
             Class[] paramTypes = new Class[]{String.class,String.class,String.class,int.class,String.class,CardType.class, CardColor.class,CardRarity.class,CardTarget.class};
             Object[] params = new Object[]{id,name,imgPath,cost,description,cardType,cardColor,cardRarity,cardTarget};
             AbstractTaiwuCard card = (AbstractTaiwuCard) classType.getConstructor(paramTypes).newInstance(params);
+            card.costUpdateValue = costUpgrade;
             card.data = data;
             card.baseDamage = card.damage = getInt(data[9]);
             card.damageUpdateValue = getInt(data[10]);
@@ -193,7 +202,7 @@ public abstract class AbstractTaiwuCard extends CustomCard
                 card.damageSection.add(getInt(values[1])*5);
                 card.damageSection.add(getInt(values[2])*5);
                 card.damageSection.add(getInt(values[3])*5);
-                card.damageHeavy = (ArrayList<Integer>) integerAllocationAlgorithm(card.damage, card.damageSection);
+                card.damageHeavy = integerAllocationAlgorithm(card.damage, card.damageSection);
             }
             if(data[25].equals(""))
                 card.updatedAttackEffect = null;
@@ -210,7 +219,7 @@ public abstract class AbstractTaiwuCard extends CustomCard
         return null;
     }
 
-    private static List<Integer> integerAllocationAlgorithm (Integer sum, List<Integer> percent) {
+    protected static ArrayList<Integer> integerAllocationAlgorithm (Integer sum, List<Integer> percent) {
         int rest = sum;
         List<Integer> stepValue = new ArrayList<>();
         for (int i = 0; i < percent.size(); i++) {
@@ -229,7 +238,7 @@ public abstract class AbstractTaiwuCard extends CustomCard
             }
             stepValue.add(value);
         }
-        return stepValue;
+        return (ArrayList<Integer>) stepValue;
     }
 
     @Override
@@ -244,7 +253,8 @@ public abstract class AbstractTaiwuCard extends CustomCard
             this.upgradeDamage(damageUpdateValue);
             this.upgradeBlock(blockUpdateValue);
             this.upgradeMagicNumber(magicUpdateValue);
-            this.upgradeBaseCost(Math.max(cost + costUpdateValue, 0));
+            if(costUpdateValue!=0)
+                this.upgradeBaseCost(Math.max(cost + costUpdateValue, 0));
         }
     }
 
@@ -254,6 +264,8 @@ public abstract class AbstractTaiwuCard extends CustomCard
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
         boolean result = super.canUse(p,m);
+        if(alwaysEx)
+            return result;
         if(isCtrlPressed())
         {
             return result&&hasEnoughShi(p,costShiTyp,costShiCount);
@@ -318,4 +330,6 @@ public abstract class AbstractTaiwuCard extends CustomCard
             return damageHeavy.get(index);
         return 0;
     }
+
+    public void onDamageAllBeBlocked(AbstractPlayer p,AbstractMonster m){}
 }

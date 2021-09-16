@@ -177,7 +177,7 @@ public class BattleController implements OnStartBattleSubscriber, PostBattleSubs
         return result;
     }
 
-    public int getDiffrentAttackType()
+    public int getDifferentAttackType()
     {
         ArrayList<AttackType> result = new ArrayList<>();
         for(int i=0;i<6;i++)
@@ -205,25 +205,5 @@ public class BattleController implements OnStartBattleSubscriber, PostBattleSubs
         {
             shiTextures.put(temp[i], TextureLoader.getTexture("img/ui/"+temp[i].toString()+".png"));
         }
-        Gdx.input.setInputProcessor(new InputAdapter(){
-            @Override
-            public boolean keyDown(int x)
-            {
-                if(x== Input.Keys.CONTROL_LEFT)
-                {
-                    AbstractTaiwuCard.showExDescription = true;
-                }
-                return true;
-            }
-            @Override
-            public boolean keyUp(int x)
-            {
-                if(x==Input.Keys.CONTROL_LEFT)
-                {
-                    AbstractTaiwuCard.showExDescription = false;
-                }
-                return true;
-            }
-        });
     }
 }

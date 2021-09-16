@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import controller.BattleController;
 
 /**
@@ -24,7 +23,7 @@ public class WuHuaBaMeng extends AbstractTaiwuCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        int count = BattleController.instance.getDiffrentAttackType() * magicNumber;
+        int count = BattleController.instance.getDifferentAttackType() * magicNumber;
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,m,new DexterityPower(p, count),count));
     }
 }

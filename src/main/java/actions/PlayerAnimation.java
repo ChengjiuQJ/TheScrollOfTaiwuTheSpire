@@ -1,10 +1,12 @@
 package actions;
 
+import cards.AbstractTaiwuCard;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.esotericsoftware.spine.Event;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -36,6 +38,7 @@ public class PlayerAnimation extends AbstractGameAction
     float Timer;
     float desX;
     float desY;
+    boolean brokenBlock;
     AnimationState.AnimationStateListener listener;
     public PlayerAnimation(AbstractPlayer p, AbstractMonster m, String[] animationString, AttackEffect attackEffect, ArrayList<Integer> damages)
     {
@@ -77,6 +80,7 @@ public class PlayerAnimation extends AbstractGameAction
                 Timer = 0F;
                 hasPreAttacked = true;
                 hasAttacked = false;
+                brokenBlock = false;
                 duration = player.state.setAnimation(0,animationString[1],false).getEndTime();
                 player.state.addListener(listener=new AnimationState.AnimationStateAdapter()
                 {
@@ -86,10 +90,13 @@ public class PlayerAnimation extends AbstractGameAction
                         super.event(trackIndex, event);
                         AbstractDungeon.effectList.add(new FlashAtkImgEffect(monster.hb.cX, monster.hb.cY, attackEffect, false));
                         monster.damage(new DamageInfo(player, damages.get(index)));
+                        if(monster.lastDamageTaken>0)
+                            brokenBlock = false;
                         index++;
                         if(monster.isDead)
                         {
                             hasAttacked = true;
+                            brokenBlock = true;
                             Timer = 0F;
                             isBack =false;
                             player.state.removeListener(listener);
@@ -119,6 +126,11 @@ public class PlayerAnimation extends AbstractGameAction
                 Timer = 0F;
                 isBack = true;
                 player.state.setAnimation(0,"C_000",true);
+                if(!brokenBlock)
+                {
+                    AbstractTaiwuCard card = (AbstractTaiwuCard) player.cardInUse;
+                    card.onDamageAllBeBlocked(player,monster);
+                }
                 isDone = true;
             }
         }
