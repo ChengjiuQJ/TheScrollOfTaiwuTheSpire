@@ -3,6 +3,7 @@ package cards;
 import actions.CostShiAction;
 import actions.GainSHIAction;
 import actions.PlayerAnimation;
+import actions.ReleaseDescriptionAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
@@ -29,6 +30,7 @@ public class DaZhuoShou extends AbstractTaiwuCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        super.use(p,m);
         if(isCtrlPressed()||alwaysEx)
         {
             if(!alwaysEx)
@@ -40,6 +42,7 @@ public class DaZhuoShou extends AbstractTaiwuCard
             AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn),basicAttackEffect));
             AbstractDungeon.actionManager.addToBottom(new GainSHIAction(p,getShiTyp,getShiCount));
         }
+        AbstractDungeon.actionManager.addToBottom(new ReleaseDescriptionAction());
     }
     @Override
     public void onDamageAllBeBlocked(AbstractPlayer p,AbstractMonster m)
@@ -49,6 +52,7 @@ public class DaZhuoShou extends AbstractTaiwuCard
         copy.damageHeavy = integerAllocationAlgorithm(copy.damage,damageSection);
         copy.purgeOnUse = true;
         copy.alwaysEx = true;
+        copy.fixedDescription = true;
         copy.changeDescription(true);
         AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(copy,m,0,true,true),true);
     }

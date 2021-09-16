@@ -1,6 +1,7 @@
 package actions;
 
 import UI.Shi;
+import Utils.Log;
 import cards.AttackType;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -26,11 +27,12 @@ public class AddShiAnimation extends AbstractGameAction
         type = attackType;
         isCalled = false;
         duration = 1F;
+
     }
     @Override
     public void update()
     {
-        TheScrollOfTaiwuTheSpire.logger.info("addShiAnimation start");
+        Log.log("addShiAnimation start");
         if(!isCalled)
         {
             shi = BattleController.instance.addShi(type);
@@ -49,11 +51,11 @@ public class AddShiAnimation extends AbstractGameAction
                 else
                 {
                     float setX = MathUtils.lerp(shi.getX(),shi.des.x,(1F-duration)/duration);
-                    TheScrollOfTaiwuTheSpire.logger.info("setX = "+setX);
+                    Log.log("setX = "+setX);
                     shi.setX(setX);
                     float setY = MathUtils.lerp(shi.getY(),shi.des.y,(1F-duration)/duration);
                     shi.setY(setY);
-                    TheScrollOfTaiwuTheSpire.logger.info("shi "+shi.attackType.toString()+" position=("+shi.getX()+","+shi.getY()+"),des=("+shi.des.x+","+shi.des.y+")");
+                    Log.log("shi "+shi.attackType.toString()+" position=("+shi.getX()+","+shi.getY()+"),des=("+shi.des.x+","+shi.des.y+")");
                 }
             }
         }

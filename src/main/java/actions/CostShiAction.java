@@ -23,7 +23,7 @@ public class CostShiAction extends AbstractGameAction
     {
         for(int i=0;i<attackTypes.length;i++)
             for (int j=0;j<amounts[i];j++)
-                AbstractDungeon.actionManager.addToBottom(new DecreaseShiAnimation(attackTypes[i]));
+                AbstractDungeon.actionManager.addToTop(new DecreaseShiAnimation(attackTypes[i]));
         isDone = true;
     }
 }

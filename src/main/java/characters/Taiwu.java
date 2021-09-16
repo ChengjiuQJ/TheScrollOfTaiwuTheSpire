@@ -70,6 +70,12 @@ public class Taiwu extends CustomPlayer
         e.setTime(e.getEndTime() * MathUtils.random());
     }
 
+    public void resetFootRotation()
+    {
+        skeleton.findBone("foot_l").setRotation(60F);
+        skeleton.findBone("foot_r").setRotation(75F);
+    }
+
 
     public ArrayList<String> getStartingDeck() { // starting deck 'nuff said
         ArrayList<String> retVal = new ArrayList<>();
@@ -87,6 +93,7 @@ public class Taiwu extends CustomPlayer
         retVal.add("心无定意");
         retVal.add("五花八门");
         retVal.add("七星横链");
+        retVal.add("鸭形拳");
         return retVal;
     }
 

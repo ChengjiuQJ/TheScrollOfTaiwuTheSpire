@@ -11,6 +11,7 @@ actions\DecreaseShiAnimation.class
 Utils\TextureLoader.class
 cards\TaiZuChangQuan.class
 DynamicVariables\S2.class
+actions\ReleaseDescriptionAction.class
 relics\FuYuJianBing.class
 actions\AddShiAnimation.class
 Utils\Log.class
@@ -21,10 +22,12 @@ cards\WuHuaBaMeng.class
 DynamicVariables\S1.class
 cards\AbstractTaiwuCard.class
 characters\Taiwu.class
+powers\YaXingQuanPower.class
 cards\DaZhuoShou.class
 cards\XiaoZongYueGong.class
 UI\Shi.class
 DynamicVariables\S3.class
+cards\YaXingQuan.class
 powers\QiXingPower.class
 UI\ShiPlaceHolder.class
 actions\GainSHIAction.class

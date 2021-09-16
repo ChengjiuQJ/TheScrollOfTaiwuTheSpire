@@ -1,11 +1,13 @@
 package actions;
 
 import cards.AbstractTaiwuCard;
+import characters.Taiwu;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.esotericsoftware.spine.Event;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -77,6 +79,7 @@ public class PlayerAnimation extends AbstractGameAction
         {
             Timer+=Gdx.graphics.getDeltaTime();
             if(Timer>duration){
+                // TODO: 2021/9/16 添加太吾音效
                 Timer = 0F;
                 hasPreAttacked = true;
                 hasAttacked = false;
@@ -126,11 +129,14 @@ public class PlayerAnimation extends AbstractGameAction
                 Timer = 0F;
                 isBack = true;
                 player.state.setAnimation(0,"C_000",true);
+                Taiwu p = (Taiwu)player;
+                p.resetFootRotation();
+                AbstractTaiwuCard card = (AbstractTaiwuCard) player.cardInUse;
                 if(!brokenBlock)
                 {
-                    AbstractTaiwuCard card = (AbstractTaiwuCard) player.cardInUse;
                     card.onDamageAllBeBlocked(player,monster);
                 }
+                card.onAnimationDone();
                 isDone = true;
             }
         }

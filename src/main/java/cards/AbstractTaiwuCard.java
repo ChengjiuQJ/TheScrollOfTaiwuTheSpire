@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DescriptionLine;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import controller.BattleController;
@@ -31,11 +32,10 @@ public abstract class AbstractTaiwuCard extends CustomCard
     protected String[] data;
     protected CardStrings cardStrings;
     protected String name;
+    protected String className;
     protected int cost;
     protected int costUpdateValue;
     protected String description;
-    protected ArrayList<DescriptionLine> rawDescriptions;
-    protected ArrayList<DescriptionLine> rawDescriptionEXs;
     protected String imgPath;
     protected CardColor cardColor;
     protected CardType cardType;
@@ -82,22 +82,23 @@ public abstract class AbstractTaiwuCard extends CustomCard
         fixedDescription = true;
     }
 
+
+
     protected void changeDescription(boolean ex)
     {
         if(ex||alwaysEx)
         {
             if(cardStrings.EXTENDED_DESCRIPTION==null)
                 return;
+            Log.log("show exDescription");
             rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
-            initializeDescriptionCN();
-            rawDescriptionEXs = super.description;
         }
         else
         {
+            Log.log("show normalDescription");
             rawDescription = cardStrings.DESCRIPTION;
-            initializeDescriptionCN();
-            rawDescriptions = super.description;
         }
+        initializeDescriptionCN();
     }
 
     @Override
@@ -139,6 +140,7 @@ public abstract class AbstractTaiwuCard extends CustomCard
             Class[] paramTypes = new Class[]{String.class,String.class,String.class,int.class,String.class,CardType.class, CardColor.class,CardRarity.class,CardTarget.class};
             Object[] params = new Object[]{id,name,imgPath,cost,description,cardType,cardColor,cardRarity,cardTarget};
             AbstractTaiwuCard card = (AbstractTaiwuCard) classType.getConstructor(paramTypes).newInstance(params);
+            card.className = data[1];
             card.costUpdateValue = costUpgrade;
             card.data = data;
             card.baseDamage = card.damage = getInt(data[9]);
@@ -332,4 +334,13 @@ public abstract class AbstractTaiwuCard extends CustomCard
     }
 
     public void onDamageAllBeBlocked(AbstractPlayer p,AbstractMonster m){}
+    public void onAnimationDone()
+    {
+        fixedDescription = false;
+    }
+
+    public void releaseDescription()
+    {
+        fixedDescription = false;
+    }
 }

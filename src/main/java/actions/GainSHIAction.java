@@ -5,7 +5,11 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import controller.BattleController;
+import powers.AbstractTaiwuPower;
+
+import java.util.Iterator;
 
 /**
  * @author 57680
@@ -29,8 +33,14 @@ public class GainSHIAction extends AbstractGameAction
     public void update()
     {
         for(int i=0;i<types.length;i++)
+        {
+            AttackType temp = types[i];
+            for(AbstractPower power:target.powers)
+                if(power instanceof AbstractTaiwuPower)
+                    temp = ((AbstractTaiwuPower) power).onAttackTypeGet(temp);
             for (int j=0;j<amount[i];j++)
-                AbstractDungeon.actionManager.addToBottom(new AddShiAnimation(types[i]));
+                addToTop(new AddShiAnimation(temp));
+        }
         isDone = true;
     }
 }

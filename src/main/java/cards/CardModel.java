@@ -3,6 +3,7 @@ package cards;
 import actions.CostShiAction;
 import actions.GainSHIAction;
 import actions.PlayerAnimation;
+import actions.ReleaseDescriptionAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -39,6 +40,6 @@ public class CardModel extends AbstractTaiwuCard
             AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
             AbstractDungeon.actionManager.addToBottom(new GainSHIAction(p,getShiTyp,getShiCount));
         }
-
+        AbstractDungeon.actionManager.addToBottom(new ReleaseDescriptionAction());
     }
 }

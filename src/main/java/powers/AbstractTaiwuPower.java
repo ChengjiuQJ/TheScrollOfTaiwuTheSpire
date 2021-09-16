@@ -18,7 +18,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
  * @version 1.0
  * Create by 2021/9/15 23:38
  */
-public class AbstractTaiwuPower extends AbstractPower
+public abstract class AbstractTaiwuPower extends AbstractPower
 {
     protected PowerStrings powerStrings;
     public AbstractTaiwuPower(String id, AbstractCreature owner, int amt) {
@@ -54,4 +54,6 @@ public class AbstractTaiwuPower extends AbstractPower
             return new StrengthPower(owner,1);
         }
     }
+
+    public AttackType onAttackTypeGet(AttackType attackType){return attackType;}
 }
