@@ -38,6 +38,13 @@
             <scope>system</scope>
             <systemPath>${basedir}/../lib/yUi.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>StSLib</groupId>
+            <artifactId>StSLib</artifactId>
+            <version>1.24.1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../lib/StSLib.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>

@@ -354,4 +354,5 @@ public abstract class AbstractTaiwuCard extends CustomCard
     {
         fixedDescription = false;
     }
+    public void onXieLiToBuffer(){}
 }
