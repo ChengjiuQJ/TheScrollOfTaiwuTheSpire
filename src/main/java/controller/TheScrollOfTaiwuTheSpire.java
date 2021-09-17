@@ -153,17 +153,18 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
             CardStrings temp = new CardStrings();
             temp.NAME = id;
             temp.DESCRIPTION = getGongFaDescription(data[20],data[19],data[22]);
-            // TODO: 2021/9/15 添加读取升级后描述 
-            temp.EXTENDED_DESCRIPTION = getGongFaDescriptionEX(data[23],data[22]);
+            temp.UPGRADE_DESCRIPTION = data[27].equals("")?temp.DESCRIPTION:getGongFaDescription(data[27],data[19],data[22]);
+            temp.EXTENDED_DESCRIPTION = getGongFaDescriptionEX(data[23],data[22],data[28]);
             cardStrings.put(id,temp);
         }
         return BaseMod.gson.toJson(cardStrings);
     }
 
-    private String[] getGongFaDescriptionEX(String src, String costAttackType)
+    private String[] getGongFaDescriptionEX(String src, String costAttackType,String updateDescription)
     {
         if(src.equals(""))
             return null;
+        String[] result = new String[2];
         StringBuilder sb = new StringBuilder();
         sb.append(" 施展 ：");
         String[] attackTypes = costAttackType.split("&");
@@ -191,7 +192,40 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
             sb.append(token);
             sb.append(' ');
         }
-        return new String[] {sb.substring(0,sb.length()-2)};
+        result[0] = sb.substring(0,sb.length()-2);
+        if(updateDescription.equals(""))
+            result[1] = result[0];
+        else
+        {
+            sb = new StringBuilder();
+            sb.append(" 施展 ：");
+            for(int i=0;i<attackTypes.length;i++)
+            {
+                String[] attackType = attackTypes[i].split("\\*");
+                for(int j=0;j<Log.getInt(attackType[1]);j++)
+                {
+                    sb.append(" ");
+                    sb.append(attackType[0]);
+                }
+            }
+            sb.append(" NL ");
+            tokens = updateDescription.split(" ");
+            for(String token:tokens)
+            {
+                for(String dv:dynamicV)
+                {
+                    if (token.equals(dv))
+                    {
+                        token = "!" + token + "!";
+                        break;
+                    }
+                }
+                sb.append(token);
+                sb.append(' ');
+            }
+            result[1] = sb.substring(0,sb.length()-2);
+        }
+        return result;
     }
 
     private String getGongFaDescription(String src,String getAttackType,String costAttackType)

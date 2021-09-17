@@ -1,0 +1,10 @@
+{
+  "modid": "thescrolloftaiwuthespire",
+  "name": "The Scroll Of Taiwu The Spire",
+  "author_list": ["七街城酒"],
+  "description": "New characters and cards from a Chinese PC game The Scroll Of Taiwu.",
+  "version": "0.1.0",
+  "sts_version": "12-22-2020",
+  "mts_version": "3.22.0",
+  "dependencies": ["basemod","yUi"]
+}

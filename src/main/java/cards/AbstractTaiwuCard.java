@@ -91,12 +91,18 @@ public abstract class AbstractTaiwuCard extends CustomCard
             if(cardStrings.EXTENDED_DESCRIPTION==null)
                 return;
             Log.log("show exDescription");
-            rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
+            if(upgraded)
+                rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
+            else
+                rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
         }
         else
         {
             Log.log("show normalDescription");
-            rawDescription = cardStrings.DESCRIPTION;
+            if(upgraded)
+                rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            else
+                rawDescription = cardStrings.DESCRIPTION;
         }
         initializeDescriptionCN();
     }
@@ -255,12 +261,17 @@ public abstract class AbstractTaiwuCard extends CustomCard
             this.upgradeDamage(damageUpdateValue);
             this.upgradeBlock(blockUpdateValue);
             this.upgradeMagicNumber(magicUpdateValue);
+            this.upgradeDescription();
             if(costUpdateValue!=0)
                 this.upgradeBaseCost(Math.max(cost + costUpdateValue, 0));
         }
     }
 
-
+    public void upgradeDescription()
+    {
+        rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+        initializeDescriptionCN();
+    }
 
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
