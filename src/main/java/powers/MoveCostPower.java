@@ -13,6 +13,8 @@ public class MoveCostPower extends AbstractTaiwuPower
     public MoveCostPower(String id, AbstractCreature owner)
     {
         super(id, owner);
+        isTurnBased = false;
+        autoDecreaseBeforeTurn = true;
     }
 
     @Override

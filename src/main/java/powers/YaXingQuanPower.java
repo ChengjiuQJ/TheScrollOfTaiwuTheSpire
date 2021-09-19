@@ -15,6 +15,7 @@ public class YaXingQuanPower extends AbstractTaiwuPower
         super(id, owner);
         type = PowerType.BUFF;
         amount=1;
+        autoDecreaseAfterTurn = true;
     }
 
     @Override

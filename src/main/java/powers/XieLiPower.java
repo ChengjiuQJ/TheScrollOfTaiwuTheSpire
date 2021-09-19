@@ -1,8 +1,11 @@
 package powers;
 
+import cards.AbstractTaiwuCard;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.BufferPower;
 
 /**
@@ -15,9 +18,17 @@ public class XieLiPower extends AbstractTaiwuPower
     public XieLiPower(String id, AbstractCreature owner)
     {
         super(id, owner);
+        amount=1;
         isTurnBased = true;
         updateDescription();
     }
+
+    public XieLiPower(String id, AbstractCreature owner, int amt)
+    {
+        super(id, owner, amt);
+        isTurnBased = true;
+    }
+
     @Override
     public void updateDescription()
     {
@@ -35,6 +46,8 @@ public class XieLiPower extends AbstractTaiwuPower
             addToTop(new ApplyPowerAction(owner,owner,new BufferPower(owner,amt)));
             if(amount==0)
                 addToTop(new RemoveSpecificPowerAction(owner,owner,this));
+            for(AbstractCard card:AbstractDungeon.player.discardPile.group)
+                ((AbstractTaiwuCard)card).onXieLiToBuffer();
         }
     }
 }

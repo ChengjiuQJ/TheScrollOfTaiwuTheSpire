@@ -294,5 +294,6 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
             else
                 BaseMod.addKeyword(new String[]{attackType.toString()}, "式的一种。式是用来施展武学的资源，消耗式施展的武学比一般使用更加强劲。每层移动点可以使受到的所有攻击伤害下降1点");
         BaseMod.addKeyword(new String[]{"施展"},"施展武学便是消耗一定数量的式来释放全新的强化武学效果。按住Left-Ctrl键以查看施展的效果。");
+        BaseMod.addKeyword(new String[]{"卸力"},"每八层 #y卸力 会转化成一层 #y缓冲 。");
     }
 }

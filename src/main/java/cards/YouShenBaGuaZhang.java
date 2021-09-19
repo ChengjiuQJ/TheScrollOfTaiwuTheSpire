@@ -4,11 +4,15 @@ import actions.CostShiAction;
 import actions.GainSHIAction;
 import actions.PlayerAnimation;
 import actions.ReleaseDescriptionAction;
+import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import java.util.function.Predicate;
 
 /**
  * @author 57680
@@ -34,6 +38,15 @@ public class YouShenBaGuaZhang extends AbstractTaiwuCard
     @Override
     public void onXieLiToBuffer()
     {
-
+        AbstractDungeon.actionManager.addToBottom(new FetchAction(AbstractDungeon.player.discardPile, new Predicate<AbstractCard>()
+        {
+            @Override
+            public boolean test(AbstractCard abstractCard)
+            {
+                if(abstractCard.equals(this))
+                    return true;
+                return false;
+            }
+        }));
     }
 }

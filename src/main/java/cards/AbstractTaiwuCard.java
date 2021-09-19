@@ -161,8 +161,8 @@ public abstract class AbstractTaiwuCard extends CustomCard
             card.customValue2Updated = getInt(data[18]);
             if(data[19].equals(""))
             {
-                card.getShiTyp = null;
-                card.getShiCount = null;
+                card.getShiTyp = new AttackType[0];
+                card.getShiCount = new int[0];
             }
             else
             {
@@ -180,7 +180,7 @@ public abstract class AbstractTaiwuCard extends CustomCard
             if(!data[21].equals(""))
                 card.basicAttackEffect = Enum.valueOf(AbstractGameAction.AttackEffect.class,data[21]);
             else
-                card.basicAttackEffect = null;
+                card.basicAttackEffect = AbstractGameAction.AttackEffect.NONE;
 
             if(data[22].equals(""))
             {
@@ -213,7 +213,7 @@ public abstract class AbstractTaiwuCard extends CustomCard
                 card.damageHeavy = integerAllocationAlgorithm(card.damage, card.damageSection);
             }
             if(data[25].equals(""))
-                card.updatedAttackEffect = null;
+                card.updatedAttackEffect = AbstractGameAction.AttackEffect.NONE;
             else
                 card.updatedAttackEffect = Enum.valueOf(AbstractGameAction.AttackEffect.class,data[25]);
             if(data[26].equals(""))
