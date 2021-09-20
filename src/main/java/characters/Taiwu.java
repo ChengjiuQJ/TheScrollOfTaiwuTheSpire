@@ -102,6 +102,9 @@ public class Taiwu extends CustomPlayer
         retVal.add("八卦步");
         retVal.add("游身八卦掌");
         retVal.add("三华聚顶");
+        retVal.add("壁虎游墙功");
+        retVal.add("疯狗拳");
+        retVal.add("锁喉阴手");
         return retVal;
     }
 

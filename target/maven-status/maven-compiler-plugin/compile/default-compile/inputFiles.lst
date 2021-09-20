@@ -3,6 +3,7 @@ D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\actions\PlayerAnima
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\powers\YaXingQuanPower.java
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\cards\DaZhuoShou.java
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\Utils\TextureLoader.java
+D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\cards\FengGouQuan.java
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\cards\CardColor.java
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\powers\AbstractTaiwuPower.java
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\cards\QiXingHengLian.java
@@ -14,11 +15,15 @@ D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\powers\QiXingPower.
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\cards\YouShenBaGuaZhang.java
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\relics\FuYuJianBing.java
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\cards\BaGuaBu.java
+D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\DynamicVariables\C2.java
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\powers\MoveCostPower.java
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\characters\Taiwu.java
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\DynamicVariables\S2.java
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\cards\XiaoZongYueGong.java
+D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\powers\SuoHouPower.java
+D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\cards\BiHuYouQiangGong.java
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\cards\CardModel.java
+D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\DynamicVariables\C1.java
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\actions\GainSHIAction.java
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\cards\AbstractTaiwuCard.java
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\characters\TaiwuEnum.java
@@ -29,6 +34,7 @@ D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\DynamicVariables\S3
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\actions\AddShiAnimation.java
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\cards\YaXingQuan.java
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\actions\DecreaseShiAnimation.java
+D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\cards\SuoHouYinShou.java
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\DynamicVariables\S4.java
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\UI\TaiwuPanel.java
 D:\Mod\Slay the Spire\TheScrollOfTaiwuTheSpire\src\main\java\cards\AttackType.java

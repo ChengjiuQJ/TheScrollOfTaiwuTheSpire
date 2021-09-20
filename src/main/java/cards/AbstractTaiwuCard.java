@@ -58,7 +58,7 @@ public abstract class AbstractTaiwuCard extends CustomCard
     protected AbstractGameAction.AttackEffect updatedAttackEffect;
     protected String[] animationString;
     public static boolean showExDescription;
-    private boolean changed;
+    protected boolean changed;
 
     public AbstractTaiwuCard(String id, String name, String img, int cost, String rawDescription, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
@@ -250,6 +250,15 @@ public abstract class AbstractTaiwuCard extends CustomCard
     }
 
     @Override
+    public AbstractCard makeStatEquivalentCopy()
+    {
+        AbstractTaiwuCard card = (AbstractTaiwuCard) super.makeStatEquivalentCopy();
+        card.customValue1 = customValue1;
+        card.customValue2 = customValue2;
+        return card;
+    }
+
+    @Override
     public AbstractCard makeCopy() {
         return initCard(id,data);
     }
@@ -258,9 +267,12 @@ public abstract class AbstractTaiwuCard extends CustomCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(damageUpdateValue);
-            this.upgradeBlock(blockUpdateValue);
-            this.upgradeMagicNumber(magicUpdateValue);
+            if(damageUpdateValue!=0)
+                this.upgradeDamage(damageUpdateValue);
+            if(blockUpdateValue!=0)
+                this.upgradeBlock(blockUpdateValue);
+            if(magicUpdateValue!=0)
+                this.upgradeMagicNumber(magicUpdateValue);
             this.upgradeDescription();
             if(costUpdateValue!=0)
                 this.upgradeBaseCost(Math.max(cost + costUpdateValue, 0));
@@ -342,6 +354,19 @@ public abstract class AbstractTaiwuCard extends CustomCard
         if(index>=0&&index<damageHeavy.size())
             return damageHeavy.get(index);
         return 0;
+    }
+
+    public int getCustomValue(int index)
+    {
+        switch (index)
+        {
+            case 1:
+                return customValue1;
+            case 2:
+                return customValue2;
+            default:
+                return 0;
+        }
     }
 
     public void onDamageAllBeBlocked(AbstractPlayer p,AbstractMonster m){}

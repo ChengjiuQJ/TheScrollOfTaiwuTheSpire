@@ -1,9 +1,6 @@
 package controller;
 
-import DynamicVariables.S1;
-import DynamicVariables.S2;
-import DynamicVariables.S3;
-import DynamicVariables.S4;
+import DynamicVariables.*;
 import Utils.Log;
 import basemod.BaseMod;
 import basemod.interfaces.*;
@@ -115,6 +112,8 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
         BaseMod.addDynamicVariable(new S2());
         BaseMod.addDynamicVariable(new S3());
         BaseMod.addDynamicVariable(new S4());
+        BaseMod.addDynamicVariable(new C1());
+        BaseMod.addDynamicVariable(new C2());
         logger.info("adding cards done");
     }
 
@@ -295,5 +294,6 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
                 BaseMod.addKeyword(new String[]{attackType.toString()}, "式的一种。式是用来施展武学的资源，消耗式施展的武学比一般使用更加强劲。每层移动点可以使受到的所有攻击伤害下降1点");
         BaseMod.addKeyword(new String[]{"施展"},"施展武学便是消耗一定数量的式来释放全新的强化武学效果。按住Left-Ctrl键以查看施展的效果。");
         BaseMod.addKeyword(new String[]{"卸力"},"每八层 #y卸力 会转化成一层 #y缓冲 。");
+        BaseMod.addKeyword(new String[]{"锁喉"},"负面效果。玩家每打出一张牌，被锁喉对象受到 #b1 点伤害。");
     }
 }

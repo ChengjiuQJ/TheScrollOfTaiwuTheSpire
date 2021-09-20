@@ -10,13 +10,16 @@ actions\CostShiAction.class
 UI\TaiwuPanel.class
 powers\XieLiPower.class
 controller\BattleController.class
+cards\SuoHouYinShou.class
 actions\DecreaseShiAnimation.class
 Utils\TextureLoader.class
 cards\TaiZuChangQuan.class
 DynamicVariables\S2.class
+DynamicVariables\C2.class
 actions\ReleaseDescriptionAction.class
 relics\FuYuJianBing.class
 actions\AddShiAnimation.class
+DynamicVariables\C1.class
 Utils\Log.class
 characters\TaiwuEnum.class
 cards\CardColor.class
@@ -30,6 +33,7 @@ cards\DaZhuoShou.class
 cards\XiaoZongYueGong.class
 UI\Shi.class
 actions\GainBlockDynamically.class
+cards\FengGouQuan.class
 cards\BaGuaBu.class
 DynamicVariables\S3.class
 cards\YaXingQuan.class
@@ -37,6 +41,8 @@ powers\QiXingPower.class
 cards\YouShenBaGuaZhang$1.class
 UI\ShiPlaceHolder.class
 powers\MoveCostPower.class
+cards\BiHuYouQiangGong.class
 actions\GainSHIAction.class
 DynamicVariables\S4.class
 actions\PlayerAnimation$1.class
+powers\SuoHouPower.class
