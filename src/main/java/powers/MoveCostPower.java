@@ -17,10 +17,18 @@ public class MoveCostPower extends AbstractTaiwuPower
         autoDecreaseBeforeTurn = true;
     }
 
+    public MoveCostPower(String id, AbstractCreature owner,int amt)
+    {
+        super(id, owner);
+        isTurnBased = false;
+        autoDecreaseBeforeTurn = true;
+        amount = amt;
+    }
+
     @Override
     public void updateDescription()
     {
-        description =  DESCRIPTIONS[0]+amount+DESCRIPTIONS[1];
+        description =  powerStrings.DESCRIPTIONS[0]+amount+powerStrings.DESCRIPTIONS[1];
     }
 
     @Override

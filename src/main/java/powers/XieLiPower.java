@@ -32,7 +32,7 @@ public class XieLiPower extends AbstractTaiwuPower
     @Override
     public void updateDescription()
     {
-        description =  DESCRIPTIONS[0];
+        description =   powerStrings.DESCRIPTIONS[0];
     }
 
     @Override

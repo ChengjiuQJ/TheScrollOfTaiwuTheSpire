@@ -42,7 +42,7 @@ public class GainSHIAction extends AbstractGameAction
                 if(power instanceof AbstractTaiwuPower)
                     temp = ((AbstractTaiwuPower) power).onAttackTypeGet(temp);
             if(temp==AttackType.移)
-                addToTop(new ApplyPowerAction(target,target,AbstractTaiwuPower.initPower("MoveCost",target),amount[i]));
+                addToTop(new ApplyPowerAction(target,target,AbstractTaiwuPower.initPower("MoveCost",target,amount[i])));
             else
                 for (int j=0;j<amount[i];j++)
                     addToTop(new AddShiAnimation(temp));

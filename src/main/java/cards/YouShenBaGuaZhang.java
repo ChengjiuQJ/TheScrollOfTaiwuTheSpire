@@ -38,14 +38,13 @@ public class YouShenBaGuaZhang extends AbstractTaiwuCard
     @Override
     public void onXieLiToBuffer()
     {
+        AbstractTaiwuCard card = this;
         AbstractDungeon.actionManager.addToBottom(new FetchAction(AbstractDungeon.player.discardPile, new Predicate<AbstractCard>()
         {
             @Override
             public boolean test(AbstractCard abstractCard)
             {
-                if(abstractCard.equals(this))
-                    return true;
-                return false;
+                return abstractCard==card;
             }
         }));
     }

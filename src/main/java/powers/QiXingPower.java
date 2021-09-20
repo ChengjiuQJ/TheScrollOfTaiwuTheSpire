@@ -25,7 +25,7 @@ public class QiXingPower extends AbstractTaiwuPower
     @Override
     public void updateDescription()
     {
-        description =  DESCRIPTIONS[0]+amount+DESCRIPTIONS[1];
+        description = powerStrings.DESCRIPTIONS[0]+amount+powerStrings.DESCRIPTIONS[1];
     }
 
     @Override

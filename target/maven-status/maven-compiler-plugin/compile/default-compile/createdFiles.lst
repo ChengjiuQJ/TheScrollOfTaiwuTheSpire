@@ -1,6 +1,7 @@
 cards\XinWuDingYi.class
 cards\AttackType.class
 cards\CardModel.class
+cards\SanHuaJuDing.class
 cards\YouShenBaGuaZhang.class
 powers\AbstractTaiwuPower.class
 actions\PlayerAnimation.class

@@ -28,7 +28,6 @@ public abstract class AbstractTaiwuPower extends AbstractPower
     public AbstractTaiwuPower(String id, AbstractCreature owner, int amt) {
         powerStrings = CardCrawlGame.languagePack.getPowerStrings(id);
         name = powerStrings.NAME;
-        DESCRIPTIONS = powerStrings.DESCRIPTIONS;
         this.ID = id;
         this.owner = owner;
         this.amount = amt;
