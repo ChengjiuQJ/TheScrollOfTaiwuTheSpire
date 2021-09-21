@@ -25,7 +25,7 @@ ID,NAME,图片,消耗能量,升级能量,卡牌颜色,卡牌种类,稀有度,目
 飞针穿梭术,FeiZhenChuanSuoShu,,0,,TONGYONG,SKILL,UNCOMMON,SELF,,,,,4,2,,,,,,获得 M 点临时敏捷。回合开始时若有格挡，将此牌从弃牌堆中返回手牌。,,,,,,,,
 壁虎游墙功,BiHuYouQiangGong,图片,1,,TONGYONG,SKILL,UNCOMMON,SELF,,,2,0,3,2,,,,,,获得 M 次 B 点格挡。,,,,,,,,
 遍体铜人法,BianTiTongRenFa,,1,,TONGYONG,SKILL,COMMON,SELF,,,5,3,1,1,,,,,,获得 B 点格挡。获得 M 层人工制品。,,,,,,,,
-疯狗拳,FengGouQuan,图片,0,,QUANZHANG,ATTACK,COMMON,ENEMY,6,0,,,,,-1,1,1,0,,造成 D 点伤害。随机获得 C1 ~ C2 点 力量 。将一张复制品放入弃牌堆。,BLUNT_LIGHT,,,,,,,
+疯狗拳,FengGouQuan,图片,0,,QUANZHANG,ATTACK,COMMON,ENEMY,5,0,,,,,-1,1,1,0,,造成 D 点伤害。随机获得 C1 ~ C2 点 力量 。将一张复制品放入弃牌堆。,BLUNT_LIGHT,,,,,,,
 戳眼削耳功,ChuoYanXiaoErGong,,1,,QUANZHANG,ATTACK,COMMON,ENEMY,5,2,,,2,1,,,,,点*1,造成 D 点伤害。,,点*2,造成 S1 + S2 + S3 + S4 点伤害，附加 M 层虚弱。,4|2|4|10,,,,
 锁喉阴手,SuoHouYinShou,图片,1,,QUANZHANG,ATTACK,UNCOMMON,ENEMY,6,3,,,3,1,,,,,拿*1,造成 D 点伤害。,BLUNT_LIGHT,拿*3,造成 S1 / S2 / S3 / S4 四段伤害。附加 M 层 锁喉 。,4|3|3|10,BLUNT_HEAVY,C_415&S_41502,,
 三指夺阴爪,SanZhiDuoYinZhua,,3,,QUANZHANG,ATTACK,UNCOMMON,ENEMY,16,8,,,99,0,,,,,拿*1,造成 D 点伤害。,,拿*3,造成 S1 + S2 + S3 + S4 点伤害，附加 M 层易伤并击晕一回合。消耗。,4|2|4|10,,,,

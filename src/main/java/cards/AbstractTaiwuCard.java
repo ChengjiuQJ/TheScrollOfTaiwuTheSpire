@@ -54,7 +54,7 @@ public abstract class AbstractTaiwuCard extends CustomCard
     protected int customValue1;
     protected int customValue1Updated;
     public boolean isCustomValue1Modified;
-    protected int BaseCustomValue2;
+    protected int baseCustomValue2;
     protected int customValue2;
     protected int customValue2Updated;
     public boolean isCustomValue2Modified;
@@ -182,7 +182,7 @@ public abstract class AbstractTaiwuCard extends CustomCard
             card.magicUpdateValue = getInt(data[14]);
             card.baseCustomValue1 = card.customValue1 = getInt(data[15]);
             card.customValue1Updated = getInt(data[16]);
-            card.BaseCustomValue2 = card.customValue2 = getInt(data[17]);
+            card.baseCustomValue2 = card.customValue2 = getInt(data[17]);
             card.customValue2Updated = getInt(data[18]);
             if(data[19].equals(""))
             {
@@ -306,11 +306,13 @@ public abstract class AbstractTaiwuCard extends CustomCard
     public void upgradeCustomValue1(int customValue1Updated)
     {
         baseCustomValue1 += customValue1Updated;
+        customValue1 = baseCustomValue1;
     }
 
     public void upgradeCustomValue2(int customValue2Updated)
     {
-        baseCustomValue1 += customValue1Updated;
+        baseCustomValue2 += customValue2Updated;
+        customValue2 = baseCustomValue2;
     }
 
     public void upgradeDescription()

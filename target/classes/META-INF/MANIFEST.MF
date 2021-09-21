@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: 
-Class-Path: BaseMod.jar ModTheSpire.jar spine-libgdx-3.8.99.1.jar deskto
- p-1.0.jar
-

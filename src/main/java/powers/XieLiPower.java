@@ -47,7 +47,8 @@ public class XieLiPower extends AbstractTaiwuPower
             if(amount==0)
                 addToTop(new RemoveSpecificPowerAction(owner,owner,this));
             for(AbstractCard card:AbstractDungeon.player.discardPile.group)
-                ((AbstractTaiwuCard)card).onXieLiToBuffer();
+                if(card instanceof AbstractTaiwuCard)
+                    ((AbstractTaiwuCard)card).onXieLiToBuffer();
         }
     }
 }

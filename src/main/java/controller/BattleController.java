@@ -84,8 +84,8 @@ public class BattleController implements OnStartBattleSubscriber, PostBattleSubs
         if(shiPlaceHolders==null)
         {
             shiPlaceHolders = new ShiPlaceHolder[6];
-            float x = panel.getX()+75F* Settings.scale;
-            float y = panel.getY()+75F* Settings.scale;
+            float x = panel.getX()+80F* Settings.scale;
+            float y = panel.getY()+80F* Settings.scale;
             float r = 80F*Settings.scale;
             for(int i=0;i<6;i++)
             {
