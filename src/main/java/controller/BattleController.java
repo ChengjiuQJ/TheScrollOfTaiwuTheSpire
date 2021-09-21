@@ -17,6 +17,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
@@ -83,9 +84,9 @@ public class BattleController implements OnStartBattleSubscriber, PostBattleSubs
         if(shiPlaceHolders==null)
         {
             shiPlaceHolders = new ShiPlaceHolder[6];
-            float x = panel.getX()+65F;
-            float y = panel.getY()+65F;
-            float r = 55F;
+            float x = panel.getX()+75F* Settings.scale;
+            float y = panel.getY()+75F* Settings.scale;
+            float r = 80F*Settings.scale;
             for(int i=0;i<6;i++)
             {
                 float deg = i*60+30;
@@ -112,7 +113,12 @@ public class BattleController implements OnStartBattleSubscriber, PostBattleSubs
 
     public void HidePanel()
     {
+        if(panel==null)
+            return;;
         Yui.Companion.remove(panel);
+        panel = null;
+        if(shiPlaceHolders==null)
+            return;
         for(int i=0;i<6;i++)
         {
             Shi shi = shiPlaceHolders[i].shi;
@@ -122,6 +128,7 @@ public class BattleController implements OnStartBattleSubscriber, PostBattleSubs
                 shiPlaceHolders[i].shi = null;
             }
         }
+        shiPlaceHolders = null;
     }
 
 

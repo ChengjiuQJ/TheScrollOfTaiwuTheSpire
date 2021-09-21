@@ -11,12 +11,16 @@ import org.apache.logging.log4j.Logger;
 public class Log
 {
     static Logger logger = TheScrollOfTaiwuTheSpire.logger;
+    static boolean logOn = true;
     public static void log(String info)
     {
-        logger.info(info);
+        if(logOn)
+            logger.info(info);
     }
     public static void log(Object[] objects)
     {
+        if(!logOn)
+            return;
         StringBuilder sb = new StringBuilder();
         for(int i=0;i<objects.length;i++)
         {

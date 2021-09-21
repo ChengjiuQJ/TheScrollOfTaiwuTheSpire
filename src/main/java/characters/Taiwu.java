@@ -46,8 +46,19 @@ public class Taiwu extends CustomPlayer
     public static final String MY_CHARACTER_CORPSE = "img/char/死亡2.png"; // dead corpse
     public static final String MY_CHARACTER_SKELETON_ATLAS = "img/char/spine2/skeleton.atlas"; // spine animation atlas
     public static final String MY_CHARACTER_SKELETON_JSON = "img/char/spine2/skeleton.json"; // spine animation json
-    public static final String[] ORB_TEXTURES = new String[]{"img/orbs/orb.png"}; //
-    public static final String ORB_VFX = "img/orbs/orb_vfx.png"; //
+    public static final String[] ORB_TEXTURES = new String[]{
+            "img/char/orb/layer1.png",
+            "img/char/orb/layer2.png",
+            "img/char/orb/layer3.png",
+            "img/char/orb/layer4.png",
+            "img/char/orb/layer5.png",
+            "img/char/orb/layer6.png",
+            "img/char/orb/layer1d.png",
+            "img/char/orb/layer2d.png",
+            "img/char/orb/layer3d.png",
+            "img/char/orb/layer4d.png",
+            "img/char/orb/layer5d.png",}; //
+    public static final String ORB_VFX = "img/char/orb/vfx.png"; //
 
     public Taiwu (String name) {
         super(name, TheScrollOfTaiwuTheSpire.TAIWU_CLASS,ORB_TEXTURES,ORB_VFX,new SpineAnimation(MY_CHARACTER_SKELETON_ATLAS,MY_CHARACTER_SKELETON_JSON,0.3f));

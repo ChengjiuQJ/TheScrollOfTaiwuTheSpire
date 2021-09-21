@@ -18,8 +18,8 @@ import java.util.HashMap;
  */
 public class TaiwuPanel extends YuiClickableObject
 {
-    public static final float SHOW_X = 30f;
-    public static final float SHOW_Y = 600;
+    public static final float SHOW_X = 30F *Settings.scale;
+    public static final float SHOW_Y = 600F *Settings.scale;
     public static final float HIDE_X = 0f;
     public static final float HIDE_Y = 0f;
     public static final Texture PANEL = TextureLoader.getTexture("img/ui/panel.png");

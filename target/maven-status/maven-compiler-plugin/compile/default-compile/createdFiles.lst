@@ -1,6 +1,8 @@
+patches\SingleCardViewPopupPatch.class
 cards\XinWuDingYi.class
 cards\AttackType.class
 cards\CardModel.class
+patches\ConfirmPopupPatch.class
 cards\SanHuaJuDing.class
 cards\YouShenBaGuaZhang.class
 powers\AbstractTaiwuPower.class
@@ -12,6 +14,7 @@ powers\XieLiPower.class
 controller\BattleController.class
 cards\SuoHouYinShou.class
 actions\DecreaseShiAnimation.class
+cards\AbstractTaiwuCard$1.class
 Utils\TextureLoader.class
 cards\TaiZuChangQuan.class
 DynamicVariables\S2.class

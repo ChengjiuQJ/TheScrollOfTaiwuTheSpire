@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
+import com.megacrit.cardcrawl.ui.buttons.ReturnToMenuButton;
 import org.apache.logging.log4j.LogManager;
 import relics.FuYuJianBing;
 
@@ -47,6 +48,24 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
         CardColor.initalize();
     }
 
+    public static boolean isDynamicV(String text,boolean mark)
+    {
+        if(!mark)
+        {
+            for(String s:dynamicV)
+                if(text.equals(s))
+                    return true;
+        }
+        else
+        {
+            for (String s:dynamicV)
+            {
+                if(text.equals("!"+s+"!"))
+                    return true;
+            }
+        }
+        return false;
+    }
 
 
 
@@ -191,7 +210,7 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
             sb.append(token);
             sb.append(' ');
         }
-        result[0] = sb.substring(0,sb.length()-2);
+        result[0] = sb.toString();
         if(updateDescription.equals(""))
             result[1] = result[0];
         else
@@ -222,7 +241,7 @@ public class TheScrollOfTaiwuTheSpire implements EditCardsSubscriber, EditCharac
                 sb.append(token);
                 sb.append(' ');
             }
-            result[1] = sb.substring(0,sb.length()-2);
+            result[1] = sb.toString();
         }
         return result;
     }

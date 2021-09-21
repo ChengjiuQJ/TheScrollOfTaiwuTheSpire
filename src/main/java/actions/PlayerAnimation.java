@@ -31,7 +31,7 @@ public class PlayerAnimation extends AbstractGameAction
     boolean isCalled;
     String[] animationString;
     AttackEffect attackEffect;
-    ArrayList<Integer> damages;
+    int[] damages;
     int index = 0;
     boolean hasMoved;
     boolean hasPreAttacked;
@@ -42,7 +42,7 @@ public class PlayerAnimation extends AbstractGameAction
     float desY;
     boolean brokenBlock;
     AnimationState.AnimationStateListener listener;
-    public PlayerAnimation(AbstractPlayer p, AbstractMonster m, String[] animationString, AttackEffect attackEffect, ArrayList<Integer> damages)
+    public PlayerAnimation(AbstractPlayer p, AbstractMonster m, String[] animationString, AttackEffect attackEffect, int[] damages)
     {
         isCalled = false;
         player = p;
@@ -92,9 +92,9 @@ public class PlayerAnimation extends AbstractGameAction
                     {
                         super.event(trackIndex, event);
                         AbstractDungeon.effectList.add(new FlashAtkImgEffect(monster.hb.cX, monster.hb.cY, attackEffect, false));
-                        monster.damage(new DamageInfo(player, damages.get(index)));
+                        monster.damage(new DamageInfo(player, damages[index]));
                         if(monster.lastDamageTaken>0)
-                            brokenBlock = false;
+                            brokenBlock = true;
                         index++;
                         if(monster.isDead)
                         {
