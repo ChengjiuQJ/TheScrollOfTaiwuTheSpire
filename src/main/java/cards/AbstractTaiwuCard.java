@@ -53,9 +53,11 @@ public abstract class AbstractTaiwuCard extends CustomCard
     protected int baseCustomValue1;
     protected int customValue1;
     protected int customValue1Updated;
+    public boolean isCustomValue1Modified;
     protected int BaseCustomValue2;
     protected int customValue2;
     protected int customValue2Updated;
+    public boolean isCustomValue2Modified;
     protected AttackType[] getShiTyp;//获得式的种类
     protected int[] getShiCount;//获得的式的数量
     protected AbstractGameAction.AttackEffect basicAttackEffect;
@@ -90,6 +92,8 @@ public abstract class AbstractTaiwuCard extends CustomCard
         changed =false;
         fixedDescription = false;
         alwaysEx = false;
+        isCustomValue1Modified = false;
+        isCustomValue2Modified = false;
     }
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
@@ -289,10 +293,24 @@ public abstract class AbstractTaiwuCard extends CustomCard
                 this.upgradeBlock(blockUpdateValue);
             if(magicUpdateValue!=0)
                 this.upgradeMagicNumber(magicUpdateValue);
+            if(customValue1Updated!=0)
+                this.upgradeCustomValue1(customValue1Updated);
+            if(customValue2Updated!=0)
+                this.upgradeCustomValue2(customValue2Updated);
             this.upgradeDescription();
             if(costUpdateValue!=0)
                 this.upgradeBaseCost(Math.max(cost + costUpdateValue, 0));
         }
+    }
+
+    public void upgradeCustomValue1(int customValue1Updated)
+    {
+        baseCustomValue1 += customValue1Updated;
+    }
+
+    public void upgradeCustomValue2(int customValue2Updated)
+    {
+        baseCustomValue1 += customValue1Updated;
     }
 
     public void upgradeDescription()

@@ -37,7 +37,7 @@ public class SuoHouPower extends AbstractTaiwuPower
     }
 
     @Override
-    public void onAfterCardPlayed(AbstractCard card)
+    public void onUseCard(AbstractCard card, UseCardAction action)
     {
         this.flash();
         this.addToBot(new SFXAction("ATTACK_HEAVY"));
@@ -48,6 +48,7 @@ public class SuoHouPower extends AbstractTaiwuPower
         }
         this.addToBot(new DamageAction(owner,new DamageInfo(owner, Math.max(0,amount), DamageInfo.DamageType.HP_LOSS)));
     }
+
 
     @Override
     public void atEndOfTurn(boolean isPlayer)

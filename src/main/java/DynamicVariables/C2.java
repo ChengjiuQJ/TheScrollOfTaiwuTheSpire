@@ -20,7 +20,7 @@ public class C2 extends DynamicVariable
     @Override
     public boolean isModified(AbstractCard abstractCard)
     {
-        return false;
+        return ((AbstractTaiwuCard)abstractCard).isCustomValue2Modified;
     }
 
     @Override
