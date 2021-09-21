@@ -33,7 +33,7 @@ public class CardColor
     public static final String ATTACK_BG_PATH = "img/cards/512/bg_attack_default_gray.png";
     public static final String SKILL_BG_PATH = "img/cards/512/bg_skill_default_gray.png";
     public static final String POWER_BG_PATH = "img/cards/512/bg_power_default_gray.png";
-    public static final String ORB_PATH = "img/orbs/512/card_default_gray_orb.png";
+    public static final String ORB_PATH = "img/cards/512/card_default_gray_orb.png";
 
     /**
      * 大图查看时显示的图片 1024*1024px

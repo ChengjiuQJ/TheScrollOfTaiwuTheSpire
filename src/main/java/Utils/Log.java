@@ -1,5 +1,6 @@
 package Utils;
 
+import basemod.BaseMod;
 import controller.TheScrollOfTaiwuTheSpire;
 import org.apache.logging.log4j.Logger;
 
@@ -11,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 public class Log
 {
     static Logger logger = TheScrollOfTaiwuTheSpire.logger;
-    static boolean logOn = true;
+    static boolean logOn = false;
     public static void log(String info)
     {
         if(logOn)

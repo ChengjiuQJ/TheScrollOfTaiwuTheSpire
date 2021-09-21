@@ -90,7 +90,7 @@ public class Taiwu extends CustomPlayer
 
     public ArrayList<String> getStartingDeck() { // starting deck 'nuff said
         ArrayList<String> retVal = new ArrayList<>();
-        /*retVal.add("太祖长拳崩");
+        retVal.add("太祖长拳崩");
         retVal.add("太祖长拳崩");
         retVal.add("太祖长拳点");
         retVal.add("太祖长拳点");
@@ -98,24 +98,8 @@ public class Taiwu extends CustomPlayer
         retVal.add("太祖长拳拿");
         retVal.add("小纵跃功");
         retVal.add("小纵跃功");
-
-         */
         retVal.add("小纵跃功");
         retVal.add("小纵跃功");
-        /*
-        retVal.add("大拙手");
-        retVal.add("心无定意");
-        retVal.add("五花八门");
-        retVal.add("七星横链");
-        retVal.add("鸭形拳");
-
-         */
-        retVal.add("八卦步");
-        retVal.add("游身八卦掌");
-        retVal.add("三华聚顶");
-        retVal.add("壁虎游墙功");
-        retVal.add("疯狗拳");
-        retVal.add("锁喉阴手");
         return retVal;
     }
 

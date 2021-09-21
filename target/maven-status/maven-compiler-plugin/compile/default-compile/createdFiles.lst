@@ -9,6 +9,7 @@ powers\AbstractTaiwuPower.class
 actions\PlayerAnimation.class
 cards\QiXingHengLian.class
 actions\CostShiAction.class
+cards\WuDangTieBuShan.class
 UI\TaiwuPanel.class
 powers\XieLiPower.class
 controller\BattleController.class
