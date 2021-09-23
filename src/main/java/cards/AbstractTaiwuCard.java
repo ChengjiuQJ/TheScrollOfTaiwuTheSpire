@@ -288,7 +288,10 @@ public abstract class AbstractTaiwuCard extends CustomCard
         if (!this.upgraded) {
             this.upgradeName();
             if(damageUpdateValue!=0)
+            {
                 this.upgradeDamage(damageUpdateValue);
+                this.upgradeDamageHeavy();
+            }
             if(blockUpdateValue!=0)
                 this.upgradeBlock(blockUpdateValue);
             if(magicUpdateValue!=0)
@@ -301,6 +304,14 @@ public abstract class AbstractTaiwuCard extends CustomCard
             if(costUpdateValue!=0)
                 this.upgradeBaseCost(Math.max(cost + costUpdateValue, 0));
         }
+    }
+
+    private void upgradeDamageHeavy()
+    {
+        if(damageSection==null)
+            return;
+        baseDamageHeavy = integerAllocationAlgorithm(baseDamage,damageSection);
+        damageHeavy = new int[]{baseDamageHeavy[0],baseDamageHeavy[1],baseDamageHeavy[2],baseDamageHeavy[3]};
     }
 
     public void upgradeCustomValue1(int customValue1Updated)
@@ -582,7 +593,15 @@ public abstract class AbstractTaiwuCard extends CustomCard
     {
         super.applyPowers();
         if(damageSection!=null)
-            damageHeavy = integerAllocationAlgorithm(damage,damageSection);
+        {
+            int offset = damage-baseDamage;
+            Log.log("damage:"+damage);
+            Log.log("baseDamage:"+baseDamage);
+            for(int i=0;i<4;i++)
+            {
+                damageHeavy[i] = Math.max(0,offset+baseDamageHeavy[i]);
+            }
+        }
     }
 
     @Override
@@ -590,7 +609,15 @@ public abstract class AbstractTaiwuCard extends CustomCard
     {
         super.calculateCardDamage(mo);
         if(damageSection!=null)
-            damageHeavy = integerAllocationAlgorithm(damage,damageSection);
+        {
+            int offset = damage-baseDamage;
+            Log.log("damage:"+damage);
+            Log.log("baseDamage:"+baseDamage);
+            for(int i=0;i<4;i++)
+            {
+                damageHeavy[i] = Math.max(0,offset+baseDamageHeavy[i]);
+            }
+        }
     }
 
     public static int getInt(String s)

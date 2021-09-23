@@ -1,0 +1,562 @@
+
+skeleton.png
+size: 1003,1003
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+doll/arm_l
+  rotate: false
+  xy: 873, 466
+  size: 128, 315
+  orig: 128, 315
+  offset: 0, 0
+  index: -1
+doll/arm_r
+  rotate: true
+  xy: 2, 17
+  size: 164, 337
+  orig: 164, 337
+  offset: 0, 0
+  index: -1
+doll/body
+  rotate: false
+  xy: 2, 496
+  size: 323, 505
+  orig: 323, 505
+  offset: 0, 0
+  index: -1
+doll/elbow_l
+  rotate: true
+  xy: 341, 44
+  size: 107, 301
+  orig: 107, 301
+  offset: 0, 0
+  index: -1
+doll/elbow_r
+  rotate: true
+  xy: 341, 153
+  size: 133, 326
+  orig: 133, 326
+  offset: 0, 0
+  index: -1
+doll/foot_l
+  rotate: true
+  xy: 874, 819
+  size: 182, 120
+  orig: 182, 120
+  offset: 0, 0
+  index: -1
+doll/foot_r
+  rotate: true
+  xy: 874, 819
+  size: 182, 120
+  orig: 182, 120
+  offset: 0, 0
+  index: -1
+doll/foot_side
+  rotate: true
+  xy: 760, 406
+  size: 156, 99
+  orig: 156, 99
+  offset: 0, 0
+  index: -1
+doll/hand_l
+  rotate: false
+  xy: 884, 310
+  size: 96, 154
+  orig: 96, 154
+  offset: 0, 0
+  index: -1
+doll/hand_r
+  rotate: true
+  xy: 735, 283
+  size: 121, 147
+  orig: 121, 151
+  offset: 0, 4
+  index: -1
+doll/head
+  rotate: true
+  xy: 669, 79
+  size: 202, 256
+  orig: 202, 256
+  offset: 0, 0
+  index: -1
+doll/leg_l
+  rotate: true
+  xy: 327, 783
+  size: 218, 545
+  orig: 218, 545
+  offset: 0, 0
+  index: -1
+doll/leg_r
+  rotate: true
+  xy: 327, 564
+  size: 217, 544
+  orig: 217, 544
+  offset: 0, 0
+  index: -1
+doll/shank_l
+  rotate: true
+  xy: 303, 288
+  size: 139, 430
+  orig: 139, 430
+  offset: 0, 0
+  index: -1
+doll/shank_r
+  rotate: true
+  xy: 327, 429
+  size: 133, 431
+  orig: 133, 431
+  offset: 0, 0
+  index: -1
+doll/waist
+  rotate: false
+  xy: 2, 183
+  size: 299, 311
+  orig: 299, 311
+  offset: 0, 0
+  index: -1
+
+skeleton2.png
+size: 1269,1269
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effects/bling/0
+  rotate: false
+  xy: 2, 773
+  size: 596, 494
+  orig: 600, 600
+  offset: 0, 55
+  index: -1
+effects/bling/1
+  rotate: false
+  xy: 2, 173
+  size: 490, 598
+  orig: 600, 600
+  offset: 42, 2
+  index: -1
+effects/bling/2
+  rotate: true
+  xy: 600, 777
+  size: 490, 542
+  orig: 600, 600
+  offset: 42, 27
+  index: -1
+effects/bling/3
+  rotate: false
+  xy: 872, 199
+  size: 395, 576
+  orig: 600, 600
+  offset: 137, 12
+  index: -1
+effects/bling/4
+  rotate: false
+  xy: 494, 176
+  size: 376, 595
+  orig: 600, 600
+  offset: 156, 5
+  index: -1
+
+skeleton3.png
+size: 2280,2280
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effects/kickass/0
+  rotate: false
+  xy: 2, 1378
+  size: 1157, 900
+  orig: 1160, 1155
+  offset: 1, 50
+  index: -1
+effects/kickass/1
+  rotate: true
+  xy: 1161, 1124
+  size: 1154, 897
+  orig: 1160, 1155
+  offset: 2, 52
+  index: -1
+effects/kickass/2
+  rotate: false
+  xy: 2, 537
+  size: 1100, 839
+  orig: 1160, 1155
+  offset: 7, 105
+  index: -1
+effects/kickass/3
+  rotate: true
+  xy: 1104, 137
+  size: 985, 675
+  orig: 1160, 1155
+  offset: 50, 212
+  index: -1
+effects/kickass/4
+  rotate: false
+  xy: 2, 2
+  size: 774, 533
+  orig: 1160, 1155
+  offset: 159, 275
+  index: -1
+effects/kickass/5
+  rotate: true
+  xy: 1781, 595
+  size: 527, 344
+  orig: 1160, 1155
+  offset: 227, 402
+  index: -1
+
+skeleton4.png
+size: 999,999
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+female/arm_l
+  rotate: true
+  xy: 249, 2
+  size: 121, 313
+  orig: 121, 313
+  offset: 0, 0
+  index: -1
+female/arm_r
+  rotate: false
+  xy: 382, 131
+  size: 152, 323
+  orig: 152, 323
+  offset: 0, 0
+  index: -1
+female/body
+  rotate: true
+  xy: 408, 662
+  size: 335, 526
+  orig: 335, 526
+  offset: 0, 0
+  index: -1
+female/elbow_l
+  rotate: false
+  xy: 564, 30
+  size: 96, 301
+  orig: 96, 301
+  offset: 0, 0
+  index: -1
+female/elbow_r
+  rotate: false
+  xy: 249, 125
+  size: 131, 329
+  orig: 131, 329
+  offset: 0, 0
+  index: -1
+female/foot_l
+  rotate: true
+  xy: 408, 491
+  size: 169, 113
+  orig: 169, 113
+  offset: 0, 0
+  index: -1
+female/foot_r
+  rotate: true
+  xy: 523, 491
+  size: 169, 113
+  orig: 169, 113
+  offset: 0, 0
+  index: -1
+female/foot_side
+  rotate: true
+  xy: 536, 333
+  size: 156, 99
+  orig: 156, 99
+  offset: 0, 0
+  index: -1
+female/hand_l
+  rotate: false
+  xy: 662, 19
+  size: 87, 143
+  orig: 87, 143
+  offset: 0, 0
+  index: -1
+female/hand_r
+  rotate: false
+  xy: 751, 30
+  size: 109, 132
+  orig: 109, 132
+  offset: 0, 0
+  index: -1
+female/head
+  rotate: true
+  xy: 662, 164
+  size: 207, 268
+  orig: 207, 268
+  offset: 0, 0
+  index: -1
+female/leg_l
+  rotate: false
+  xy: 207, 456
+  size: 199, 541
+  orig: 203, 542
+  offset: 4, 1
+  index: -1
+female/leg_r
+  rotate: false
+  xy: 2, 453
+  size: 203, 544
+  orig: 203, 544
+  offset: 0, 0
+  index: -1
+female/shank_l
+  rotate: false
+  xy: 130, 35
+  size: 117, 416
+  orig: 117, 416
+  offset: 0, 0
+  index: -1
+female/shank_r
+  rotate: false
+  xy: 2, 26
+  size: 126, 425
+  orig: 126, 425
+  offset: 0, 0
+  index: -1
+female/waist
+  rotate: true
+  xy: 638, 373
+  size: 287, 313
+  orig: 289, 319
+  offset: 1, 1
+  index: -1
+
+skeleton5.png
+size: 2009,2009
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+weapons/anqi
+  rotate: true
+  xy: 1363, 1930
+  size: 77, 104
+  orig: 77, 104
+  offset: 0, 0
+  index: -1
+weapons/bianzi
+  rotate: true
+  xy: 2, 1834
+  size: 48, 2005
+  orig: 48, 2005
+  offset: 0, 0
+  index: -1
+weapons/changdao
+  rotate: true
+  xy: 2, 1042
+  size: 176, 1124
+  orig: 176, 1124
+  offset: 0, 0
+  index: -1
+weapons/changjian
+  rotate: true
+  xy: 2, 1932
+  size: 43, 1232
+  orig: 43, 1232
+  offset: 0, 0
+  index: -1
+weapons/dao
+  rotate: true
+  xy: 2, 1261
+  size: 147, 971
+  orig: 151, 971
+  offset: 0, 0
+  index: -1
+weapons/dizi
+  rotate: true
+  xy: 353, 1977
+  size: 30, 475
+  orig: 30, 475
+  offset: 0, 0
+  index: -1
+weapons/duanchu
+  rotate: true
+  xy: 1469, 1922
+  size: 85, 531
+  orig: 85, 531
+  offset: 0, 0
+  index: -1
+weapons/duanjian
+  rotate: true
+  xy: 2, 1754
+  size: 78, 743
+  orig: 78, 743
+  offset: 0, 0
+  index: -1
+weapons/fuchen
+  rotate: true
+  xy: 2, 1410
+  size: 120, 983
+  orig: 262, 1059
+  offset: 94, 54
+  index: -1
+weapons/fuling
+  rotate: false
+  xy: 1905, 1664
+  size: 94, 168
+  orig: 94, 168
+  offset: 0, 0
+  index: -1
+weapons/gun
+  rotate: true
+  xy: 2, 1884
+  size: 44, 1434
+  orig: 44, 1434
+  offset: 0, 0
+  index: -1
+weapons/jian
+  rotate: true
+  xy: 747, 1747
+  size: 85, 956
+  orig: 85, 956
+  offset: 0, 0
+  index: -1
+weapons/nianhua
+  rotate: true
+  xy: 1705, 1745
+  size: 87, 198
+  orig: 87, 201
+  offset: 0, 0
+  index: -1
+weapons/null
+  rotate: false
+  xy: 2, 2006
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+weapons/pi
+  rotate: true
+  xy: 205, 1646
+  size: 106, 198
+  orig: 118, 198
+  offset: 9, 0
+  index: -1
+weapons/qiang
+  rotate: true
+  xy: 2, 1532
+  size: 80, 1840
+  orig: 80, 1840
+  offset: 0, 0
+  index: -1
+weapons/qin
+  rotate: false
+  xy: 2, 427
+  size: 1138, 207
+  orig: 1143, 207
+  offset: 5, 0
+  index: -1
+weapons/quan
+  rotate: true
+  xy: 1191, 1627
+  size: 118, 198
+  orig: 118, 198
+  offset: 0, 0
+  index: -1
+weapons/reng
+  rotate: true
+  xy: 1391, 1616
+  size: 129, 210
+  orig: 129, 210
+  offset: 0, 0
+  index: -1
+weapons/shouchiyao
+  rotate: false
+  xy: 1128, 944
+  size: 395, 274
+  orig: 395, 274
+  offset: 0, 0
+  index: -1
+weapons/shuangci
+  rotate: true
+  xy: 830, 1977
+  size: 30, 531
+  orig: 30, 532
+  offset: 0, 0
+  index: -1
+weapons/shuzhi
+  rotate: true
+  xy: 975, 1220
+  size: 162, 966
+  orig: 163, 966
+  offset: 0, 0
+  index: -1
+weapons/taiji
+  rotate: true
+  xy: 1844, 1521
+  size: 141, 143
+  orig: 141, 143
+  offset: 0, 0
+  index: -1
+weapons/wandao
+  rotate: true
+  xy: 987, 1384
+  size: 146, 784
+  orig: 146, 784
+  offset: 0, 0
+  index: -1
+weapons/zhang_l
+  rotate: true
+  xy: 1004, 1628
+  size: 117, 185
+  orig: 120, 188
+  offset: 0, 3
+  index: -1
+weapons/zhang_r
+  rotate: true
+  xy: 405, 1644
+  size: 108, 189
+  orig: 109, 196
+  offset: 0, 2
+  index: -1
+weapons/zhen
+  rotate: true
+  xy: 5, 1995
+  size: 12, 346
+  orig: 12, 348
+  offset: 0, 1
+  index: -1
+weapons/zhi_l
+  rotate: true
+  xy: 2, 1665
+  size: 87, 201
+  orig: 87, 201
+  offset: 0, 0
+  index: -1
+weapons/zhi_r
+  rotate: true
+  xy: 596, 1633
+  size: 112, 205
+  orig: 112, 205
+  offset: 0, 0
+  index: -1
+weapons/zhongdao
+  rotate: true
+  xy: 2, 818
+  size: 222, 1087
+  orig: 222, 1087
+  offset: 0, 0
+  index: -1
+weapons/zhongjian
+  rotate: true
+  xy: 2, 636
+  size: 180, 1252
+  orig: 180, 1252
+  offset: 0, 0
+  index: -1
+weapons/zhua_l
+  rotate: true
+  xy: 803, 1629
+  size: 116, 199
+  orig: 116, 199
+  offset: 0, 0
+  index: -1
+weapons/zhua_r
+  rotate: true
+  xy: 1603, 1614
+  size: 129, 203
+  orig: 129, 203
+  offset: 0, 0
+  index: -1

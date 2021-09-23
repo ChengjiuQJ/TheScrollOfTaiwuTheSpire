@@ -1,0 +1,35 @@
+{
+  "QiXing": {
+    "NAME": "七星",
+    "DESCRIPTIONS": [
+      "你的回合开始时，若有6个式，获得 #b",
+      " 点能量。"
+    ]
+  },
+  "YaXingQuan": {
+    "NAME": "鸭形拳",
+    "DESCRIPTIONS": [
+      "获得的 #y崩 、 #y点 都改为 #拿 。"
+    ]
+  },
+  "MoveCost": {
+    "NAME": "移动点",
+    "DESCRIPTIONS": [
+      "你受到的所有攻击伤害下降 #b",
+      " 点。"
+    ]
+  },
+  "XieLi": {
+    "NAME": "卸力",
+    "DESCRIPTIONS": [
+      "每8层 #y卸力 将转换成1层 #y缓冲 。"
+    ]
+  },
+  "SuoHou": {
+    "NAME": "锁喉",
+    "DESCRIPTIONS": [
+      "本回合每打出一张牌，受到 #b",
+      " 点伤害。"
+    ]
+  }
+}
